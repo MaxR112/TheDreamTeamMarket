@@ -1,0 +1,37 @@
+
+
+public class Furniture extends Product{
+    private String material;
+    private double weight;
+    private String furnitureColor;
+
+    public Furniture(String material, double weight, String furnitureColor) {
+        this.material = material;
+        this.weight = weight;
+        this.furnitureColor = furnitureColor;
+    }
+
+    public String getMaterial(){
+        return this.material;
+    }
+
+    public double getWeight(){
+        return this.weight;
+    }
+
+    public String getFurnitureColor(){
+        return this.furnitureColor;
+    }
+
+    public void setSize(String material){
+        this.material = material;
+    }
+
+    public void setFurnitureColor(String furnitureColor){
+        this.furnitureColor = furnitureColor;
+    }
+
+    public void setWeight(double weight){
+        this.weight = weight;
+    }
+}
