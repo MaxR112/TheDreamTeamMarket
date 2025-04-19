@@ -77,9 +77,18 @@ public class productCatalog {
     }
 
     public void addProduct(Product product) {
+        try {
+        for (Product productAlreadyInList : allProducts) {
+            if (productAlreadyInList.getName().equals(product.getName())){
+                throw new Exception("Product name " + product.getName() + " already exists!");
+            }
+        }
         allProducts.add(product);
         System.out.println("Added new product to catalog: " + product.getName()
                 + " (Type: " + product.getClass().getSimpleName() + ")");
+        }catch (Exception e){
+            System.out.println("Error: " + e);
+        }
     }
 
     public boolean removeProduct(String name) {

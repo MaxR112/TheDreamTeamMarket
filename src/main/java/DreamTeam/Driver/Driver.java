@@ -14,9 +14,9 @@ public class Driver{
         //Some code is commented out as implementation does not exist on this branch.
         ArrayList<Product> sampleProducts = new ArrayList<>();
 
-        Clothing shirt = new Clothing("Aqua-Man Shirt", "C001", 19.99, 10, "Soft, blue Aqua-Man Shirt", "CottonCo", "Large", "T-Shirt", "Blue");
+        Clothing shirt = new Clothing("Aqua-Man Shirt", 19.99, 10, "Soft, blue Aqua-Man Shirt", "CottonCo", "Large", "T-Shirt", "Blue");
 
-        Electronics laptop = new Electronics("Dell X15", "E001", 999.99, 5, "15-inch gaming laptop", "Dell", "350 watts", "12.3 pounds", "Dark Gray");
+        Electronics laptop = new Electronics("Dell X15", 999.99, 5, "15-inch gaming laptop", "Dell", "350 watts", "12.3 pounds", "Dark Gray");
 
 
         sampleProducts.add(shirt);
@@ -26,7 +26,7 @@ public class Driver{
         productCatalog catalog = new productCatalog(sampleProducts);
         catalog.displayAllCatalog();
         catalog.addProduct(shirt);
-        catalog.removeProductQuantity("E001", 2);
+        catalog.removeProductQuantity("Dell X15", 2);
         catalog.displayAllCatalog();
         catalog.displayByProductType("Electronics");
         catalog.getProductByName("Aqua-Man Shirt");    
