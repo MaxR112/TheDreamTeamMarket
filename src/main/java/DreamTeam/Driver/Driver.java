@@ -41,7 +41,8 @@ public class Driver{
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 //Creates a screen with set size, then sets screen to the main screen.
-                new ScreenManager(800, 600).setScreen(new MainScreen());
+                ScreenManager screenManager = new ScreenManager(800, 600);
+                screenManager.setContentPane(new MainScreen(screenManager));
             }
         });
     }

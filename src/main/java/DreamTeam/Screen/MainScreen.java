@@ -9,24 +9,24 @@ import javax.swing.JPanel;
 
 //Borrowing properties from JPanel, used as a screen.
 public class MainScreen extends JPanel{
-    public MainScreen() {
+    public MainScreen(ScreenManager screenManager) {
         //Settings for the screen.
         this.setLayout(null);
         this.setVisible(true);
         this.setSize(ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight());
-        createLayout(this);
+        createLayout(screenManager, this);
     }
-    void createLayout(JPanel panel){
+    void createLayout(ScreenManager screenManager, JPanel panel){
         JLabel loginLabel = new JLabel("Login as Buyer or Seller?");
-        loginLabel.setBounds(50, 20, 200, 40);
+        loginLabel.setBounds(40, 10, 200, 40);
         panel.add(loginLabel);
 
         panel.add(createBuyerButton());
-        panel.add(createSellerButton());
+        panel.add(createSellerButton(screenManager));
     }
     JButton createBuyerButton(){
         JButton buyerButton = new JButton("Buyer");
-        buyerButton.setBounds(50, 70, 200, 40);
+        buyerButton.setBounds(40, 60, 200, 40);
         //Inline way (and non-DRY way) to listen to button inputs.
         buyerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -36,14 +36,13 @@ public class MainScreen extends JPanel{
         });
         return buyerButton;
     }
-    JButton createSellerButton(){
+    JButton createSellerButton(ScreenManager screenManager){
         JButton sellerButton = new JButton("Seller");
-        sellerButton.setBounds(50, 120, 200, 40);
+        sellerButton.setBounds(40, 110, 200, 40);
         //Inline way (and non-DRY way) to listen to button inputs.
         sellerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO: implement seller screen.
-                System.out.println("seller");
+                screenManager.setContentPane(new SellerScreen());
             }
         });
         return sellerButton;

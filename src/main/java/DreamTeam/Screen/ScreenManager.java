@@ -1,7 +1,6 @@
 package main.java.DreamTeam.Screen;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 //Borrowing properties from JFrame, used as the application window.
 public class ScreenManager extends JFrame{
@@ -16,11 +15,6 @@ public class ScreenManager extends JFrame{
         this.setSize(width, height);
         ScreenManager.screenWidth = width;
         ScreenManager.screenHeight = height;
-    }
-    //Getting screens is already performed by Swing itself.
-    public void setScreen(JPanel panel){
-        remove(panel);
-        add(panel);
     }
     public static int getScreenWidth(){
         return screenWidth;
