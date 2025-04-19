@@ -28,14 +28,14 @@ public class Driver{
         laptop.setQuantity(5);
         laptop.setCompany("TechWorld");
         laptop.setDescription("15-inch gaming laptop");
-        //laptop.setIdentifier("E001");
+        laptop.setIdentifier("E001");
 
         sampleProducts.add(shirt);
         sampleProducts.add(laptop);
 
-        //Catalog catalog = new Catalog();
-        //catalog.setCatalog(sampleProducts);
-        //catalog.displayAllCatalog();
+        Catalog catalog = new Catalog();
+        catalog.setCatalog(sampleProducts);
+        catalog.displayAllCatalog();
 
         //Run the screen operation on a seperate thread.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
