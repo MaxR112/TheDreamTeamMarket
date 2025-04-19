@@ -12,7 +12,6 @@ public class productCatalog {
         System.out.println("Catalog has been set with " + productList.size() + " products.");
     }
 
-    //* Buyer Methods *//
     public void displayAllCatalog() {
         if (allProducts.isEmpty()) {
             System.out.println("Catalog is currently empty.");
@@ -39,6 +38,11 @@ public class productCatalog {
             System.out.println("No products found in category: " + productType);
         }
         return filtered;
+    }
+
+    public double getProductCost(String name){
+        Product product = getProductByName(name);
+        return product.getPrice();
     }
 
     public Product getProductByName(String name) {
@@ -72,7 +76,6 @@ public class productCatalog {
         return false;
     }
 
-//* Seller Methods *//
     public void addProduct(Product product) {
         allProducts.add(product);
         System.out.println("Added new product to catalog: " + product.getName()
@@ -103,7 +106,6 @@ public class productCatalog {
         return false;
     }
 
-//!Helpers 
     private void displayProduct(Product product) {
         System.out.println("[" + product.getClass().getSimpleName() + "] "
                 + product.getName() + " | $" + product.getPrice()
@@ -113,4 +115,5 @@ public class productCatalog {
     public ArrayList<Product> getAllProducts() {
         return allProducts;
     }
+
 }
