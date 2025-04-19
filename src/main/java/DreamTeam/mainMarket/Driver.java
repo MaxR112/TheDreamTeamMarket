@@ -31,8 +31,10 @@ public class Driver{
         catalog.displayByProductType("Electronics");
         catalog.getProductByName("Aqua-Man Shirt");   
         
-        fileWriter w = new fileWriter(sampleProducts);
-        w.writeProductsToFile();
+        catalog.addProduct(new Electronics("Dell X1522", 999.99, 5, "15-inch gaming laptop", "Dell", "350 watts", "12.3 pounds", "Dark Gray"));
+
+        fileWriter allProductWriter = new fileWriter(catalog.getRawProductsArray(), "allProductCatalog.txt");
+        allProductWriter.writeProductsToFile();
 
         //Run the screen operation on a seperate thread.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {

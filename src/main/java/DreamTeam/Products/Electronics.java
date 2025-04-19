@@ -38,6 +38,6 @@ public class Electronics extends Product{
 
     @Override
     public String toString(){
-        return this.name + this.price + this.quantity + this.description + this.companyName + this.powerConsumption + this.weight + this.electronicColor;
+        return this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName + ", " + this.powerConsumption + ", " + this.weight + ", " + this.electronicColor;
     }
 }

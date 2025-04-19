@@ -38,6 +38,6 @@ public class Furniture extends Product{
 
     @Override
     public String toString(){
-        return this.name + this.price + this.quantity + this.description + this.companyName + this.material + this.weight + this.furnitureColor;
+        return this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName + ", " + this.material + ", " + this.weight + ", " + this.furnitureColor;
     }
 }

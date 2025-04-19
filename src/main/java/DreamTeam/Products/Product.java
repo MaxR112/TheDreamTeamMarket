@@ -57,6 +57,6 @@ public abstract class Product {
 
     @Override
     public String toString(){
-        return this.name + this.price + this.quantity + this.description + this.companyName;
+        return this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName;
     }
 }

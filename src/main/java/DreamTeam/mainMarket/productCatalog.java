@@ -120,7 +120,7 @@ public class productCatalog {
                 + " | Qty: " + product.getQuantity());
     }
 
-    public ArrayList<Product> getAllProducts() {
+    public ArrayList<Product> getRawProductsArray() {
         return allProducts;
     }
 
