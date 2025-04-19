@@ -35,4 +35,9 @@ public class Furniture extends Product{
     public void setWeight(double weight){
         this.weight = weight;
     }
+
+    @Override
+    public String toString(){
+        return this.name + this.price + this.quantity + this.description + this.companyName + this.material + this.weight + this.furnitureColor;
+    }
 }
