@@ -1,3 +1,5 @@
+package main.java.DreamTeam.Products;
+
 public class Clothing extends Product{
     private String size;
     private String clothingType;
@@ -14,7 +16,7 @@ public class Clothing extends Product{
     }
 
     public String getClothingType(){
-        return this.clothingColor;
+        return this.clothingType;
     }
 
     public String getClothingColor(){

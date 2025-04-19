@@ -1,3 +1,5 @@
+package main.java.DreamTeam.Products;
+
 public class Furniture extends Product{
     private String material;
     private double weight;
