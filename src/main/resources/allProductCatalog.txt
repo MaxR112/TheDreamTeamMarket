@@ -1,3 +1,1 @@
-Aqua-Man Shirt, 19.99, 10, Soft, blue Aqua-Man Shirt, CottonCo, Large, T-Shirt, Blue
-Dell X15, 999.99, 3, 15-inch gaming laptop, Dell, 350 watts, 12.3 pounds, Dark Gray
-Dell X1522, 999.99, 5, 15-inch gaming laptop, Dell, 350 watts, 12.3 pounds, Dark Gray
+Electronics, Dell X1522, 999.99, 5, 15-inch gaming laptop, Dell, 350 watts, 12.3 pounds, Dark Gray

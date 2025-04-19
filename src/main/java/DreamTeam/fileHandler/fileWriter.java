@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import main.java.DreamTeam.Products.Product;
 
-public class fileWriter{
+public class fileWriter implements Files{
 
     public ArrayList<Product> allProductsToWrite;
     public String filePath;
@@ -24,7 +24,6 @@ public class fileWriter{
             FileWriter writer = new FileWriter(filePath);
             for (Product product : allProductsToWrite){
                 writer.write(product.toString() + "\n");
-                System.out.println("Wrote one line");
             }
             writer.close();
         } catch (IOException e){
@@ -32,7 +31,8 @@ public class fileWriter{
         }
 }
 
-    private void checkForFileAndCreateIfNotPresent() {
+    @Override
+    public void checkForFileAndCreateIfNotPresent() {
         try {
             if (productFile.createNewFile()){
                 System.out.println("Product file created: " + productFile.getName());

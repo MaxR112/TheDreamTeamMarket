@@ -1,31 +1,23 @@
 package main.java.DreamTeam.mainMarket;
 
 import java.util.ArrayList;
-import main.java.DreamTeam.Products.Clothing;
 import main.java.DreamTeam.Products.Electronics;
 import main.java.DreamTeam.Products.Product;
 import main.java.DreamTeam.Screen.MainScreen;
 import main.java.DreamTeam.Screen.ScreenManager;
+import main.java.DreamTeam.fileHandler.fileReader;
 import main.java.DreamTeam.fileHandler.fileWriter;
 
 public class Driver{
     public static void main(String[] args) {
-        //Init the catalog.
-        //Some code is commented out as implementation does not exist on this branch.
-        ArrayList<Product> sampleProducts = new ArrayList<>();
 
-        Clothing shirt = new Clothing("Aqua-Man Shirt", 19.99, 10, "Soft, blue Aqua-Man Shirt", "CottonCo", "Large", "T-Shirt", "Blue");
+        ArrayList<Product> allProducts;
 
-        Electronics laptop = new Electronics("Dell X15", 999.99, 5, "15-inch gaming laptop", "Dell", "350 watts", "12.3 pounds", "Dark Gray");
+        allProducts = readAllProductCatalogAndSaveToArray();
 
+        productCatalog catalog = new productCatalog(allProducts);
 
-        sampleProducts.add(shirt);
-        sampleProducts.add(laptop);
-
-        // Test a bunch of catalog methods
-        productCatalog catalog = new productCatalog(sampleProducts);
         catalog.displayAllCatalog();
-        catalog.addProduct(shirt);
         catalog.removeProductQuantity("Dell X15", 2);
         catalog.displayAllCatalog();
         catalog.displayByProductType("Electronics");
@@ -43,5 +35,15 @@ public class Driver{
                 new ScreenManager(800, 600).setScreen(new MainScreen());
             }
         });
+    }
+
+    private static ArrayList<Product> readAllProductCatalogAndSaveToArray() {
+        ArrayList<Product> productArray;
+
+        fileReader pr = new fileReader("allProductCatalog.txt");
+
+        pr.readFileAndStoreInList();
+        productArray = new ArrayList<>(pr.getProductListFromRead());
+        return productArray;
     }
 }

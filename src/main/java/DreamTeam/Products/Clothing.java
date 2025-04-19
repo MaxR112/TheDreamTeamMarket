@@ -38,6 +38,6 @@ public class Clothing extends Product{
 
     @Override
     public String toString(){
-        return this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName + ", " + this.size + ", " + this.clothingType + ", " + this.clothingColor;
+        return "Clothing, " + this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName + ", " + this.size + ", " + this.clothingType + ", " + this.clothingColor;
     }
 }
