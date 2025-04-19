@@ -25,7 +25,7 @@ public class productCatalog {
         }
     }
 
-    public ArrayList<Product> displayByProduct(String productType) {
+    public ArrayList<Product> displayByProductType(String productType) {
         ArrayList<Product> filtered = new ArrayList<>();
         System.out.println("\n--- Products filtered by type: " + productType + " ---");
         for (Product product : allProducts) {
@@ -52,7 +52,7 @@ public class productCatalog {
         return null;
     }
 
-    public boolean updateQuantity(String identifier, int quantityToSubtract) {
+    public boolean removeProductQuantity(String identifier, int quantityToSubtract) {
         for (Product product : allProducts) {
             if (product.getIdentifier().equals(identifier)) {
                 int currentQty = product.getQuantity();

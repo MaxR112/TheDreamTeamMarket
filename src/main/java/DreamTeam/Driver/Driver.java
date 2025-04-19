@@ -22,8 +22,14 @@ public class Driver{
         sampleProducts.add(shirt);
         sampleProducts.add(laptop);
 
+        // Test a bunch of catalog methods
         productCatalog catalog = new productCatalog(sampleProducts);
         catalog.displayAllCatalog();
+        catalog.addProduct(shirt);
+        catalog.removeProductQuantity("E001", 2);
+        catalog.displayAllCatalog();
+        catalog.displayByProductType("Electronics");
+        catalog.getProductByName("Aqua-Man Shirt");    
 
         //Run the screen operation on a seperate thread.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
