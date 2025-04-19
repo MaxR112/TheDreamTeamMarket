@@ -1,54 +1,54 @@
 package main.java.DreamTeam.Products;
 
 public abstract class Product {
-    protected  double price;
-    protected String description;
-    protected String name;
-    protected int quantity;
-    protected String companyName;
-    protected String identifier;
+    public  double price;
+    public String description;
+    public String name;
+    public int quantity;
+    public String companyName;
+    public String identifier;
 
-    protected double getPrice(){
+    public double getPrice(){
         return this.price;
     }
 
-    protected void setPrice(double price){
+    public void setPrice(double price){
         this.price = price;
     }
 
-    protected String getDescription(){
+    public String getDescription(){
         return this.description;
     }
 
-    protected void setDescription(String description){
+    public void setDescription(String description){
         this.description = description;
     }
 
-    protected String getName(){
+    public String getName(){
         return this.name;
     }
 
-    protected void setName(String name){
+    public void setName(String name){
         this.name = name;
     }
 
-    protected int getQuantity(){
+    public int getQuantity(){
         return this.quantity;
     }
 
-    protected void setQuantity(int quantity){
+    public void setQuantity(int quantity){
         this.quantity = quantity;
     }
 
-    protected String getCompany(){
+    public String getCompany(){
         return this.companyName;
     }
 
-    protected void setCompany(String companyName){
+    public void setCompany(String companyName){
         this.companyName = companyName;
     }
 
-    protected String getIdentifer(){
+    public String getIdentifer(){
         return this.identifier;
     }
 }
