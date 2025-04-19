@@ -5,7 +5,8 @@ public class Electronics extends Product{
     private double weight;
     private String electronicColor;
 
-    public Electronics(double powerConsumption, double weight, String electronicColor) {
+    public Electronics(String name, String identifier, double price, int quantity, String description, String companyName, double powerConsumption, double weight, String electronicColor) {
+        super(price, description, name, quantity, companyName, identifier);
         this.powerConsumption = powerConsumption;
         this.weight = weight;
         this.electronicColor = electronicColor;
