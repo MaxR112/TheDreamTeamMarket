@@ -16,12 +16,12 @@ public class fileWriter{
 
     public void writeProductsToFile(){
         checkForFileAndCreateIfNotPresent();
-        
+
     }
 
     private void checkForFileAndCreateIfNotPresent() {
         try {
-            File productFile = new File("allProductCatalog.txt");
+            File productFile = new File("src/main/resources/allProductCatalog.txt");
             if (productFile.createNewFile()){
                 System.out.println("Product file created: " + productFile.getName());
             }

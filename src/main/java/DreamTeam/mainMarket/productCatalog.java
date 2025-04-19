@@ -1,4 +1,4 @@
-package main.java.DreamTeam.Catalog;
+package main.java.DreamTeam.mainMarket;
 
 import java.util.ArrayList;
 import main.java.DreamTeam.Products.Product;
@@ -6,7 +6,6 @@ import main.java.DreamTeam.Products.Product;
 public class productCatalog {
 
     public ArrayList<Product> allProducts;
-
     public productCatalog(ArrayList<Product> productList) {
         this.allProducts = new ArrayList<>(productList);
         System.out.println("Catalog has been set with " + productList.size() + " products.");

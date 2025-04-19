@@ -1,12 +1,12 @@
-package main.java.DreamTeam.Driver;
+package main.java.DreamTeam.mainMarket;
 
 import java.util.ArrayList;
-import main.java.DreamTeam.Catalog.productCatalog;
 import main.java.DreamTeam.Products.Clothing;
 import main.java.DreamTeam.Products.Electronics;
 import main.java.DreamTeam.Products.Product;
 import main.java.DreamTeam.Screen.MainScreen;
 import main.java.DreamTeam.Screen.ScreenManager;
+import main.java.DreamTeam.fileHandler.fileWriter;
 
 public class Driver{
     public static void main(String[] args) {
@@ -29,7 +29,10 @@ public class Driver{
         catalog.removeProductQuantity("Dell X15", 2);
         catalog.displayAllCatalog();
         catalog.displayByProductType("Electronics");
-        catalog.getProductByName("Aqua-Man Shirt");    
+        catalog.getProductByName("Aqua-Man Shirt");   
+        
+        fileWriter w = new fileWriter(sampleProducts);
+        w.writeProductsToFile();
 
         //Run the screen operation on a seperate thread.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
