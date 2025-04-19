@@ -56,9 +56,9 @@ public class productCatalog {
         return null;
     }
 
-    public boolean removeProductQuantity(String identifier, int quantityToSubtract) {
+    public boolean removeProductQuantity(String name, int quantityToSubtract) {
         for (Product product : allProducts) {
-            if (product.getIdentifier().equals(identifier)) {
+            if (product.getName().equals(name)) {
                 int currentQty = product.getQuantity();
                 if (currentQty >= quantityToSubtract) {
                     product.setQuantity(currentQty - quantityToSubtract);
@@ -72,7 +72,7 @@ public class productCatalog {
                 }
             }
         }
-        System.out.println("Product with ID " + identifier + " not found.");
+        System.out.println("Product with name " + name + " not found.");
         return false;
     }
 
