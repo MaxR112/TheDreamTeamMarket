@@ -5,8 +5,8 @@ public class Furniture extends Product{
     private double weight;
     private String furnitureColor;
 
-    public Furniture(String name, String identifier, double price, int quantity, String description, String companyName, String material, double weight, String furnitureColor) {
-        super(price, description, name, quantity, companyName, identifier);
+    public Furniture(String name, double price, int quantity, String description, String companyName, String material, double weight, String furnitureColor) {
+        super(price, description, name, quantity, companyName);
         this.material = material;
         this.weight = weight;
         this.furnitureColor = furnitureColor;

@@ -6,15 +6,13 @@ public abstract class Product {
     public String name;
     public int quantity;
     public String companyName;
-    public String identifier;
 
-    public Product(double price, String description, String name, int quantity, String companyName, String identifier){
+    public Product(double price, String description, String name, int quantity, String companyName){
         this.price = price;
         this.description = description;
         this.name = name;
         this.quantity = quantity;
         this.companyName = companyName;
-        this.identifier = identifier;
     }
 
     public double getPrice(){
@@ -55,9 +53,5 @@ public abstract class Product {
 
     public void setCompany(String companyName){
         this.companyName = companyName;
-    }
-
-    public String getIdentifier(){
-        return this.identifier;
     }
 }

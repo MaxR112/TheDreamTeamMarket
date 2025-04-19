@@ -56,9 +56,9 @@ public class productCatalog {
         return null;
     }
 
-    public boolean removeProductQuantity(String identifier, int quantityToSubtract) {
+    public boolean removeProductQuantity(String name, int quantityToSubtract) {
         for (Product product : allProducts) {
-            if (product.getIdentifier().equals(identifier)) {
+            if (product.getName().equals(name)) {
                 int currentQty = product.getQuantity();
                 if (currentQty >= quantityToSubtract) {
                     product.setQuantity(currentQty - quantityToSubtract);
@@ -72,14 +72,23 @@ public class productCatalog {
                 }
             }
         }
-        System.out.println("Product with ID " + identifier + " not found.");
+        System.out.println("Product with name " + name + " not found.");
         return false;
     }
 
     public void addProduct(Product product) {
+        try {
+        for (Product productAlreadyInList : allProducts) {
+            if (productAlreadyInList.getName().equals(product.getName())){
+                throw new Exception("Product name " + product.getName() + " already exists!");
+            }
+        }
         allProducts.add(product);
         System.out.println("Added new product to catalog: " + product.getName()
                 + " (Type: " + product.getClass().getSimpleName() + ")");
+        }catch (Exception e){
+            System.out.println("Error: " + e);
+        }
     }
 
     public boolean removeProduct(String name) {
