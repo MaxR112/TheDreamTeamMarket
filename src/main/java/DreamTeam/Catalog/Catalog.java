@@ -1,6 +1,9 @@
+package main.java.DreamTeam.Catalog;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import main.java.DreamTeam.Products.Product;
 
 public class Catalog {
 

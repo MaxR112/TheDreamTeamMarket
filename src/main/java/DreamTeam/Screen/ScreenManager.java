@@ -1,3 +1,5 @@
+package main.java.DreamTeam.Screen;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 

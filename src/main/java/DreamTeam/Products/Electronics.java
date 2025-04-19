@@ -1,3 +1,5 @@
+package main.java.DreamTeam.Products;
+
 public class Electronics extends Product{
     private double powerConsumption;
     private double weight;
