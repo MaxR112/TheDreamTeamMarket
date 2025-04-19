@@ -48,7 +48,7 @@ public abstract class Product {
         this.companyName = companyName;
     }
 
-    public String getIdentifer(){
+    public String getIdentifier(){
         return this.identifier;
     }
 }
