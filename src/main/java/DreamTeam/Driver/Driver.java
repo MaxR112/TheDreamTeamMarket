@@ -1,7 +1,7 @@
 package main.java.DreamTeam.Driver;
 
 import java.util.ArrayList;
-
+import main.java.DreamTeam.Catalog.productCatalog;
 import main.java.DreamTeam.Products.Clothing;
 import main.java.DreamTeam.Products.Electronics;
 import main.java.DreamTeam.Products.Product;
@@ -22,9 +22,8 @@ public class Driver{
         sampleProducts.add(shirt);
         sampleProducts.add(laptop);
 
-        setCatalog catalog = new setCatalog();
-        //catalog.setCatalog(sampleProducts);
-        //catalog.displayAllCatalog();
+        productCatalog catalog = new productCatalog(sampleProducts);
+        catalog.displayAllCatalog();
 
         //Run the screen operation on a seperate thread.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {

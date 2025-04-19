@@ -1,20 +1,15 @@
 package main.java.DreamTeam.Catalog;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import main.java.DreamTeam.Products.Product;
 
-public class Catalog {
+public class productCatalog {
 
     public ArrayList<Product> allProducts;
 
-    public Catalog(){}
-
-    public void setCatalog(List<Product> productList) {
+    public productCatalog(ArrayList<Product> productList) {
         this.allProducts = new ArrayList<>(productList);
         System.out.println("Catalog has been set with " + productList.size() + " products.");
-
     }
 
     //* Buyer Methods *//
