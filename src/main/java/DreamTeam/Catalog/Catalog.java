@@ -9,6 +9,8 @@ public class Catalog {
 
     public ArrayList<Product> allProducts;
 
+    public Catalog(){}
+
     public void setCatalog(List<Product> productList) {
         this.allProducts = new ArrayList<>(productList);
         System.out.println("Catalog has been set with " + productList.size() + " products.");
