@@ -1,21 +1,17 @@
 package main.java.DreamTeam.Catalog;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import main.java.DreamTeam.Products.Product;
 
-public class Catalog {
+public class productCatalog {
 
     public ArrayList<Product> allProducts;
 
-    public void setCatalog(List<Product> productList) {
+    public productCatalog(ArrayList<Product> productList) {
         this.allProducts = new ArrayList<>(productList);
         System.out.println("Catalog has been set with " + productList.size() + " products.");
-
     }
 
-    //* Buyer Methods *//
     public void displayAllCatalog() {
         if (allProducts.isEmpty()) {
             System.out.println("Catalog is currently empty.");
@@ -28,7 +24,7 @@ public class Catalog {
         }
     }
 
-    public ArrayList<Product> displayByProduct(String productType) {
+    public ArrayList<Product> displayByProductType(String productType) {
         ArrayList<Product> filtered = new ArrayList<>();
         System.out.println("\n--- Products filtered by type: " + productType + " ---");
         for (Product product : allProducts) {
@@ -44,6 +40,11 @@ public class Catalog {
         return filtered;
     }
 
+    public double getProductCost(String name){
+        Product product = getProductByName(name);
+        return product.getPrice();
+    }
+
     public Product getProductByName(String name) {
         for (Product product : allProducts) {
             if (product.getName().equalsIgnoreCase(name)) {
@@ -55,7 +56,7 @@ public class Catalog {
         return null;
     }
 
-    public boolean updateQuantity(String identifier, int quantityToSubtract) {
+    public boolean removeProductQuantity(String identifier, int quantityToSubtract) {
         for (Product product : allProducts) {
             if (product.getIdentifier().equals(identifier)) {
                 int currentQty = product.getQuantity();
@@ -75,7 +76,6 @@ public class Catalog {
         return false;
     }
 
-//* Seller Methods *//
     public void addProduct(Product product) {
         allProducts.add(product);
         System.out.println("Added new product to catalog: " + product.getName()
@@ -106,7 +106,6 @@ public class Catalog {
         return false;
     }
 
-//!Helpers 
     private void displayProduct(Product product) {
         System.out.println("[" + product.getClass().getSimpleName() + "] "
                 + product.getName() + " | $" + product.getPrice()
@@ -116,4 +115,5 @@ public class Catalog {
     public ArrayList<Product> getAllProducts() {
         return allProducts;
     }
+
 }
