@@ -1,21 +1,22 @@
 package main.java.DreamTeam.Products;
 
 public class Electronics extends Product{
-    private double powerConsumption;
-    private double weight;
+    private String powerConsumption;
+    private String weight;
     private String electronicColor;
 
-    public Electronics(double powerConsumption, double weight, String electronicColor) {
+    public Electronics(String name, double price, int quantity, String description, String companyName, String powerConsumption, String weight, String electronicColor) {
+        super(price, description, name, quantity, companyName);
         this.powerConsumption = powerConsumption;
         this.weight = weight;
         this.electronicColor = electronicColor;
     }
 
-    public double getPowerConsumption(){
+    public String getPowerConsumption(){
         return this.powerConsumption;
     }
 
-    public double getWeight(){
+    public String getWeight(){
         return this.weight;
     }
 
@@ -23,7 +24,7 @@ public class Electronics extends Product{
         return this.electronicColor;
     }
 
-    public void setSize(double powerConsumption){
+    public void setPowerConsumption(String powerConsumption){
         this.powerConsumption = powerConsumption;
     }
 
@@ -31,7 +32,7 @@ public class Electronics extends Product{
         this.electronicColor = electronicColor;
     }
 
-    public void setWeight(double weight){
+    public void setWeight(String weight){
         this.weight = weight;
     }
 }

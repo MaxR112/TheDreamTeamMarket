@@ -1,21 +1,17 @@
 package main.java.DreamTeam.Catalog;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import main.java.DreamTeam.Products.Product;
 
-public class Catalog {
+public class productCatalog {
 
     public ArrayList<Product> allProducts;
 
-    public void setCatalog(List<Product> productList) {
+    public productCatalog(ArrayList<Product> productList) {
         this.allProducts = new ArrayList<>(productList);
         System.out.println("Catalog has been set with " + productList.size() + " products.");
-
     }
 
-    //* Buyer Methods *//
     public void displayAllCatalog() {
         if (allProducts.isEmpty()) {
             System.out.println("Catalog is currently empty.");
@@ -28,7 +24,7 @@ public class Catalog {
         }
     }
 
-    public ArrayList<Product> displayByProduct(String productType) {
+    public ArrayList<Product> displayByProductType(String productType) {
         ArrayList<Product> filtered = new ArrayList<>();
         System.out.println("\n--- Products filtered by type: " + productType + " ---");
         for (Product product : allProducts) {
@@ -44,6 +40,11 @@ public class Catalog {
         return filtered;
     }
 
+    public double getProductCost(String name){
+        Product product = getProductByName(name);
+        return product.getPrice();
+    }
+
     public Product getProductByName(String name) {
         for (Product product : allProducts) {
             if (product.getName().equalsIgnoreCase(name)) {
@@ -55,9 +56,9 @@ public class Catalog {
         return null;
     }
 
-    public boolean updateQuantity(String identifier, int quantityToSubtract) {
+    public boolean removeProductQuantity(String name, int quantityToSubtract) {
         for (Product product : allProducts) {
-            if (product.getIdentifier().equals(identifier)) {
+            if (product.getName().equals(name)) {
                 int currentQty = product.getQuantity();
                 if (currentQty >= quantityToSubtract) {
                     product.setQuantity(currentQty - quantityToSubtract);
@@ -71,15 +72,23 @@ public class Catalog {
                 }
             }
         }
-        System.out.println("Product with ID " + identifier + " not found.");
+        System.out.println("Product with name " + name + " not found.");
         return false;
     }
 
-//* Seller Methods *//
     public void addProduct(Product product) {
+        try {
+        for (Product productAlreadyInList : allProducts) {
+            if (productAlreadyInList.getName().equals(product.getName())){
+                throw new Exception("Product name " + product.getName() + " already exists!");
+            }
+        }
         allProducts.add(product);
         System.out.println("Added new product to catalog: " + product.getName()
                 + " (Type: " + product.getClass().getSimpleName() + ")");
+        }catch (Exception e){
+            System.out.println("Error: " + e);
+        }
     }
 
     public boolean removeProduct(String name) {
@@ -106,7 +115,6 @@ public class Catalog {
         return false;
     }
 
-//!Helpers 
     private void displayProduct(Product product) {
         System.out.println("[" + product.getClass().getSimpleName() + "] "
                 + product.getName() + " | $" + product.getPrice()
@@ -116,4 +124,5 @@ public class Catalog {
     public ArrayList<Product> getAllProducts() {
         return allProducts;
     }
+
 }
