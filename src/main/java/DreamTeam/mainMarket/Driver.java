@@ -1,10 +1,9 @@
 package main.java.DreamTeam.mainMarket;
 
 import java.util.ArrayList;
-import main.java.DreamTeam.Products.Electronics;
 import main.java.DreamTeam.Products.Product;
 import main.java.DreamTeam.Screen.MainScreen;
-import main.java.DreamTeam.Screen.ScreenManager;
+import main.java.DreamTeam.Screen.Window;
 import main.java.DreamTeam.fileHandler.fileReader;
 import main.java.DreamTeam.fileHandler.fileWriter;
 
@@ -22,8 +21,6 @@ public class Driver{
         catalog.displayAllCatalog();
         catalog.displayByProductType("Electronics");
         catalog.getProductByName("Aqua-Man Shirt");   
-        
-        catalog.addProduct(new Electronics("Dell X1522", 999.99, 5, "15-inch gaming laptop", "Dell", "350 watts", "12.3 pounds", "Dark Gray"));
 
         fileWriter allProductWriter = new fileWriter(catalog.getRawProductsArray(), "allProductCatalog.txt");
         allProductWriter.writeProductsToFile();
@@ -31,8 +28,9 @@ public class Driver{
         //Run the screen operation on a seperate thread.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                //Creates a screen with set size, then sets screen to the main screen.
-                new ScreenManager(800, 600).setScreen(new MainScreen());
+                Window window = new Window(800, 600);
+                Window.setCatalog(catalog);
+                window.setContentPane(new MainScreen(window));
             }
         });
     }
