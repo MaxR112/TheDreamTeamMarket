@@ -14,9 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import main.java.DreamTeam.mainMarket.productCatalog;
 import main.java.DreamTeam.Screen.MainScreen;
 import main.java.DreamTeam.Screen.Window;
+import main.java.DreamTeam.Screen.AddItemScreen.AddItemScreen;
+import main.java.DreamTeam.mainMarket.productCatalog;
 
 /**
  * High-level screen for sellers to add and remove items.
@@ -54,10 +55,10 @@ public class SellerScreen extends JScrollPane{
         constraints = createScreenTitle(panel, constraints);
 
         constraints = createBackButton(window, panel, constraints);
-        constraints = createAddButton(panel, constraints);
+        constraints = createAddButton(window, panel, constraints);
 
         constraints = createCatalogTitle(panel, constraints);
-        constraints = createListing(panel, constraints, Window.getCatalog());
+        constraints = createListing(window, panel, constraints, Window.getCatalog());
         return panel;
     }
     GridBagConstraints createScreenTitle(JPanel panel, GridBagConstraints constraints){
@@ -70,18 +71,19 @@ public class SellerScreen extends JScrollPane{
         //Set the position within the grid layout.
         constraints.insets = new Insets(5, 50, 0, 0);
         //Set the size of the component
+        constraints.ipadx = 0;
         constraints.ipady = 20;
         
         panel.add(screenTitle, constraints);
         return constraints;
     }
-    GridBagConstraints createAddButton(JPanel panel, GridBagConstraints constraints){
+    GridBagConstraints createAddButton(Window window, JPanel panel, GridBagConstraints constraints){
         JButton addButton = new JButton("Add Item to Catalog");
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO: implement add/modify screen.
-                System.out.println("add item");
+                window.setContentPane(new AddItemScreen(window));
+                window.validate();
             }
         });
 
@@ -129,14 +131,15 @@ public class SellerScreen extends JScrollPane{
         //Set the position within the grid layout.
         constraints.insets = new Insets(50, 50, 0, 0);
         //Set the size of the component
+        constraints.ipadx = 0;
         constraints.ipady = 20;
         
         panel.add(screenTitle, constraints);
         return constraints;
     }
-    GridBagConstraints createListing(JPanel panel, GridBagConstraints constraints, productCatalog catalog){
+    GridBagConstraints createListing(Window window, JPanel panel, GridBagConstraints constraints, productCatalog catalog){
         for(int i = 0; i < catalog.allProducts.size(); i++){
-            constraints = DisplayItem.createItemInfo(panel, constraints, catalog.allProducts.get(i));
+            constraints = DisplayItem.createItemInfo(window, panel, constraints, catalog.allProducts.get(i), i);
         }
         return constraints;
     }
