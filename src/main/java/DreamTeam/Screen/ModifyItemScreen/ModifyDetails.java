@@ -15,9 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import main.java.DreamTeam.Products.Product;
 import main.java.DreamTeam.Screen.Window;
+import main.java.DreamTeam.Screen.AddItemScreen.ChangeItem;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
-import main.java.DreamTeam.fileHandler.fileWriter;
 
 public class ModifyDetails{
     //This is stored as a private static variable for when the items are added eventually (this is to fix forcing pressing enter)
@@ -27,6 +28,7 @@ public class ModifyDetails{
     private static JFormattedTextField priceTextbox;
     private static JTextArea descriptionTextbox;
     private static int productIndex;
+    private static ChangeItem item;
 
     public static JPanel createLayout(JPanel panel, Window window, GridBagConstraints constraints, int productIndex){
         ModifyDetails.productIndex = productIndex;
@@ -247,18 +249,20 @@ public class ModifyDetails{
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Window.getCatalog().allProducts.get(productIndex).setName(nameTextbox.getText());
-                Window.getCatalog().allProducts.get(productIndex).setCompany(companyTextbox.getText());
-                Window.getCatalog().allProducts.get(productIndex).setQuantity(((Number)quantityTextbox.getValue()).intValue());
-                Window.getCatalog().allProducts.get(productIndex).setPrice(((Number)priceTextbox.getValue()).intValue());
-                Window.getCatalog().allProducts.get(productIndex).setDescription(descriptionTextbox.getText());
-                
+                Product product = Window.getCatalog().allProducts.get(productIndex);
+                item = new ChangeItem(product.getClass().getSimpleName());
+                item.createProduct(
+                    nameTextbox.getText(),
+                    companyTextbox.getText(),
+                    ((Number)priceTextbox.getValue()).intValue(),
+                    ((Number)quantityTextbox.getValue()).intValue(),
+                    descriptionTextbox.getText());
+                Window.getCatalog().updateProduct(product.name, item.getProduct());
+                item.writeCatalogFile();
+                System.out.println("Successfully modified product to the catalog, and saved to the file.");
+
                 window.setContentPane(new SellerScreen(window));
                 window.validate();
-
-                fileWriter writer = new fileWriter(Window.getCatalog().allProducts, "allProductCatalog.txt");
-                writer.writeProductsToFile();
-                System.out.println("Successfully added product to the catalog, and saved to the file.");
             }
         });
 
@@ -279,14 +283,13 @@ public class ModifyDetails{
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Window.getCatalog().allProducts.remove(productIndex);
-                
+                Window.getCatalog().removeProduct(Window.getCatalog().allProducts.get(productIndex).name);
+                System.out.println("Successfully removed product from the catalog, and saved to the file.");
+
                 window.setContentPane(new SellerScreen(window));
                 window.validate();
 
-                fileWriter writer = new fileWriter(Window.getCatalog().allProducts, "allProductCatalog.txt");
-                writer.writeProductsToFile();
-                System.out.println("Successfully removed product from the catalog, and saved to the file.");
+                item.writeCatalogFile();
             }
         });
 

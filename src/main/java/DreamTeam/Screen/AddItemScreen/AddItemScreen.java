@@ -15,15 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import main.java.DreamTeam.Products.Clothing;
-import main.java.DreamTeam.Products.Electronics;
-import main.java.DreamTeam.Products.Furniture;
-import main.java.DreamTeam.Products.Product;
 import main.java.DreamTeam.Screen.Window;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
 
 public class AddItemScreen extends JScrollPane {
-    public static Product product;
     private JPanel detailsPanel;
     /**
      * Init the screen with certain properties.
@@ -127,7 +122,7 @@ public class AddItemScreen extends JScrollPane {
                 if(selection != "Select an item"){
                     panel.remove(detailsPanel);
                     detailsPanel = initPanel(new JPanel());
-                    detailsPanel = AddDetails.createLayout(detailsPanel, window, constraints);
+                    detailsPanel = AddDetails.createLayout(detailsPanel, window, constraints, selection);
                     panel.add(detailsPanel, constraints);
                 }
                 else{
@@ -136,28 +131,6 @@ public class AddItemScreen extends JScrollPane {
 
                 //Set to that value specifically for other items to be added.
                 constraints.gridy = 6;
-                //TODO: maybe collect all of these into one singluar function? btw this violates open-closed principles.
-                switch(selection){
-                    //Escape condition when not selecting an item.
-                    case "Select an item":
-                        break;
-                    case "Electronics":
-                        product =
-                            new Electronics("", 0, 0, null, null, null, null, null);
-                        System.out.println("electronic");
-                        break;
-                    case "Clothing":
-                        product =
-                            new Clothing("", 0, 0, null, null, null, null, null);
-                        System.out.println("clothing");
-                        break;
-                    case "Furniture":
-                        product =
-                            new Furniture("", 0, 0, null, null, null, null, null);
-                        System.out.println("furniture");
-                        break;
-                    default: throw new IllegalArgumentException("Invalid item type");
-                }
                 panel.revalidate();
             }
         });

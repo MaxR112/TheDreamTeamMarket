@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 
 import main.java.DreamTeam.Screen.Window;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
-import main.java.DreamTeam.fileHandler.fileWriter;
 
 //TODO: pass catalog as a parameter?
 public class AddDetails{
@@ -27,8 +26,10 @@ public class AddDetails{
     private static JFormattedTextField quantityTextbox;
     private static JFormattedTextField priceTextbox;
     private static JTextArea descriptionTextbox;
+    private static ChangeItem item;
 
-    public static JPanel createLayout(JPanel panel, Window window, GridBagConstraints constraints){
+    public static JPanel createLayout(JPanel panel, Window window, GridBagConstraints constraints, String productType){
+        item = new ChangeItem(productType);
         int gridX = constraints.gridx;
         int gridY = constraints.gridy;
         //Properties for all elements
@@ -239,19 +240,19 @@ public class AddDetails{
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                AddItemScreen.product.setName(nameTextbox.getText());
-                AddItemScreen.product.setCompany(companyTextbox.getText());
-                AddItemScreen.product.setQuantity(((Number)quantityTextbox.getValue()).intValue());
-                AddItemScreen.product.setPrice(((Number)priceTextbox.getValue()).intValue());
-                AddItemScreen.product.setDescription(descriptionTextbox.getText());
-                Window.getCatalog().addProduct(AddItemScreen.product);
-                
+                //TODO: maybe don't instantiate a product?
+                item.createProduct(
+                    nameTextbox.getText(),
+                    companyTextbox.getText(),
+                    ((Number)priceTextbox.getValue()).intValue(),
+                    ((Number)quantityTextbox.getValue()).intValue(),
+                    descriptionTextbox.getText());
+                item.addToCatalog();
+                item.writeCatalogFile();
+                System.out.println("Successfully added product to the catalog, and saved to the file.");
+
                 window.setContentPane(new SellerScreen(window));
                 window.validate();
-
-                fileWriter writer = new fileWriter(Window.getCatalog().allProducts, "allProductCatalog.txt");
-                writer.writeProductsToFile();
-                System.out.println("Successfully added product to the catalog, and saved to the file.");
             }
         });
 
