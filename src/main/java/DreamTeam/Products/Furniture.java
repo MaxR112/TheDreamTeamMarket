@@ -2,10 +2,10 @@ package main.java.DreamTeam.Products;
 
 public class Furniture extends Product{
     private String material;
-    private double weight;
+    private String weight;
     private String furnitureColor;
 
-    public Furniture(String name, double price, int quantity, String description, String companyName, String material, double weight, String furnitureColor) {
+    public Furniture(String name, double price, int quantity, String description, String companyName, String material, String weight, String furnitureColor) {
         super(price, description, name, quantity, companyName);
         this.material = material;
         this.weight = weight;
@@ -16,7 +16,7 @@ public class Furniture extends Product{
         return this.material;
     }
 
-    public double getWeight(){
+    public String getWeight(){
         return this.weight;
     }
 
@@ -32,7 +32,12 @@ public class Furniture extends Product{
         this.furnitureColor = furnitureColor;
     }
 
-    public void setWeight(double weight){
+    public void setWeight(String weight){
         this.weight = weight;
+    }
+
+    @Override
+    public String toString(){
+        return "Furniture, " + this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName + ", " + this.material + ", " + this.weight + ", " + this.furnitureColor;
     }
 }

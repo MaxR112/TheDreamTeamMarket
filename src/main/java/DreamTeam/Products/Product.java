@@ -54,4 +54,9 @@ public abstract class Product {
     public void setCompany(String companyName){
         this.companyName = companyName;
     }
+
+    @Override
+    public String toString(){
+        return "Product, " + this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName;
+    }
 }

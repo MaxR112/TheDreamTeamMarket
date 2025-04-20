@@ -35,4 +35,9 @@ public class Clothing extends Product{
     public void setClothingColor(String clothingColor){
         this.clothingColor = clothingColor;
     }
+
+    @Override
+    public String toString(){
+        return "Clothing, " + this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName + ", " + this.size + ", " + this.clothingType + ", " + this.clothingColor;
+    }
 }
