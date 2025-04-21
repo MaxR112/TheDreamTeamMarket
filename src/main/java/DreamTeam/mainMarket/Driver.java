@@ -1,7 +1,6 @@
 package main.java.DreamTeam.mainMarket;
 
 import java.util.ArrayList;
-
 import main.java.DreamTeam.Products.Product;
 import main.java.DreamTeam.Screen.MainScreen;
 import main.java.DreamTeam.Screen.Window;
@@ -15,6 +14,7 @@ public class Driver{
         allProducts = readAllProductCatalogAndSaveToArray();
 
         productCatalog catalog = new productCatalog(allProducts);
+        productCart cart = new productCart(catalog);
 
         catalog.displayAllCatalog();
         catalog.removeProductQuantity("Dell X15", 2);

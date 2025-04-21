@@ -1,2 +1,2 @@
-Electronics, Dell X1522, 999.99, 5, 15-inch gaming laptop, 15-inch gaming laptop, 15-inch gaming laptop, 15-inch gaming laptop, 15-inch gaming laptop
+Electronics, Dell X1522, 999.0, 10, 15-inch gaming laptop, 15-inch gaming laptop, null, null, null
 Clothing, Aqua-Man Shirt, 19.99, 10, Soft, Soft, Soft, Soft, Soft
