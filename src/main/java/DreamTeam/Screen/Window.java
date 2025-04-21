@@ -1,6 +1,7 @@
 package main.java.DreamTeam.Screen;
 
 import javax.swing.JFrame;
+
 import main.java.DreamTeam.mainMarket.productCatalog;
 
 //Borrowing properties from JFrame, used as the application window.

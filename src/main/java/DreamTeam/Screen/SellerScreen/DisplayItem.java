@@ -13,10 +13,12 @@ import javax.swing.JPanel;
 
 import main.java.DreamTeam.Products.Product;
 import main.java.DreamTeam.Screen.Window;
+import main.java.DreamTeam.Screen.ModifyItemScreen.ModifyItemScreen;
 
 public class DisplayItem {
     //Adds +5 to gridY.
-    static GridBagConstraints createItemInfo(JPanel panel, GridBagConstraints constraints, Product product){
+    static GridBagConstraints createItemInfo(
+            Window window, JPanel panel, GridBagConstraints constraints, Product product, int productIndex){
         //Get current positions that won't be altered.
         int gridX = constraints.gridx;
         int gridY = constraints.gridy;
@@ -34,7 +36,7 @@ public class DisplayItem {
         constraints = createDescriptionTitle(panel, constraints, product, gridX, gridY + 4);
         constraints = createDescription(panel, constraints, product, gridX, gridY + 5);
         
-        constraints = createModifyButton(panel, constraints, product, gridX, gridY + 6);
+        constraints = createModifyButton(window, panel, constraints, productIndex, gridX, gridY + 6);
 
         constraints.gridy += 5;
         return constraints;
@@ -188,13 +190,13 @@ public class DisplayItem {
         panel.add(description, constraints);
         return constraints;
     }
-    private static GridBagConstraints createModifyButton(JPanel panel, GridBagConstraints constraints, Product product, int gridX, int gridY){
+    private static GridBagConstraints createModifyButton(Window window, JPanel panel, GridBagConstraints constraints, int productIndex, int gridX, int gridY){
         JButton modifyButton = new JButton("Modify this item");
         //Inline way (and non-DRY way) to listen to button inputs.
         modifyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO: implement add/modify screen.
-                System.out.println("modify " + product.getName());
+                window.setContentPane(new ModifyItemScreen(window, productIndex));
+                window.validate();
             }
         });
 

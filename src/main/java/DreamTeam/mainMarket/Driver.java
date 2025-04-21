@@ -1,11 +1,11 @@
 package main.java.DreamTeam.mainMarket;
 
 import java.util.ArrayList;
+
 import main.java.DreamTeam.Products.Product;
 import main.java.DreamTeam.Screen.MainScreen;
 import main.java.DreamTeam.Screen.Window;
 import main.java.DreamTeam.fileHandler.fileReader;
-import main.java.DreamTeam.fileHandler.fileWriter;
 
 public class Driver{
     public static void main(String[] args) {
@@ -22,8 +22,9 @@ public class Driver{
         catalog.displayByProductType("Electronics");
         catalog.getProductByName("Aqua-Man Shirt");   
 
-        fileWriter allProductWriter = new fileWriter(catalog.getRawProductsArray(), "allProductCatalog.txt");
-        allProductWriter.writeProductsToFile();
+        //For the purposes of testing, this is commented out.
+        // fileWriter allProductWriter = new fileWriter(catalog.getRawProductsArray(), "allProductCatalog.txt");
+        // allProductWriter.writeProductsToFile();
 
         //Run the screen operation on a seperate thread.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
