@@ -20,7 +20,15 @@ public class Driver{
         catalog.removeProductQuantity("Dell X15", 2);
         catalog.displayAllCatalog();
         catalog.displayByProductType("Electronics");
-        catalog.getProductByName("Aqua-Man Shirt");   
+        catalog.getProductByName("Aqua-Man Shirt"); 
+        
+        cart.addProduct("Aqua-Man Shirt");
+        cart.addProduct("Aqua-Man Shirt");
+        System.out.println(cart.displayCart());
+        cart.updateQuantityOfItemInCart("Aqua-Man Shirt", 11);
+        System.out.println(cart.displayCart());
+
+
 
         //For the purposes of testing, this is commented out.
         // fileWriter allProductWriter = new fileWriter(catalog.getRawProductsArray(), "allProductCatalog.txt");
