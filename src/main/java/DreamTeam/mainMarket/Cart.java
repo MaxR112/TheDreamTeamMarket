@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import main.java.DreamTeam.Products.Product;
 
 public class Cart {
+
     private ArrayList<Product> cartList;
     private productCatalog catalog;
 
@@ -19,7 +20,6 @@ public class Cart {
             return false;
         }
 
-        // Check if already in cart
         for (Product cartProduct : cartList) {
             if (cartProduct.getName().equalsIgnoreCase(name)) {
                 if (catalogProduct.getQuantity() > cartProduct.getQuantity()) {
@@ -33,16 +33,15 @@ public class Cart {
             }
         }
 
-        // Add new item to cart
         if (catalogProduct.getQuantity() >= 1) {
             Product productCopy = new Product(
-                catalogProduct.getPrice(),
-                catalogProduct.getDescription(),
-                catalogProduct.getName(),
-                1,
-                catalogProduct.getCompany()
+                    catalogProduct.getPrice(),
+                    catalogProduct.getDescription(),
+                    catalogProduct.getName(),
+                    1,
+                    catalogProduct.getCompany()
             ) {
-            }; // anonymous subclass to satisfy abstract Product
+            };
             cartList.add(productCopy);
             System.out.println("Added to cart: " + productCopy.getName());
             return true;
@@ -96,8 +95,8 @@ public class Cart {
         StringBuilder sb = new StringBuilder("\n--- Your Cart ---\n");
         for (Product p : cartList) {
             sb.append(p.getName())
-              .append(" | Qty: ").append(p.getQuantity())
-              .append(" | $").append(p.getPrice()).append(" each\n");
+                    .append(" | Qty: ").append(p.getQuantity())
+                    .append(" | $").append(p.getPrice()).append(" each\n");
         }
         sb.append("Total: $").append(getTotalCost()).append("\n");
         return sb.toString();
