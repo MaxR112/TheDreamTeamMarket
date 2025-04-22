@@ -59,4 +59,14 @@ public abstract class Product {
     public String toString(){
         return "Product, " + this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName;
     }
+    //Set to object to allow for integers.
+    public Object[][] getAttributes(){
+        return new Object[][] {
+            {"Name", this.name},
+            {"Price", this.price},
+            {"Quantity", this.quantity},
+            {"Description", this.description},
+            {"Company Name", this.companyName}
+        };
+    }
 }

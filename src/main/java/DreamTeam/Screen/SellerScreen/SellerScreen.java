@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import main.java.DreamTeam.Screen.MainScreen;
+import main.java.DreamTeam.Screen.ResetConstraints;
 import main.java.DreamTeam.Screen.Window;
 import main.java.DreamTeam.Screen.AddItemScreen.AddItemScreen;
 import main.java.DreamTeam.mainMarket.productCatalog;
@@ -52,32 +53,27 @@ public class SellerScreen extends JScrollPane{
         constraints.gridwidth = GridBagConstraints.REMAINDER;
 
         //Draw elements
-        constraints = createScreenTitle(panel, constraints);
+        constraints = createScreenTitle(panel, constraints, 0, 0);
 
-        constraints = createBackButton(window, panel, constraints);
-        constraints = createAddButton(window, panel, constraints);
+        constraints = createBackButton(window, panel, constraints, 0, 1);
+        constraints = createAddButton(window, panel, constraints, 1, 1);
 
-        constraints = createCatalogTitle(panel, constraints);
-        constraints = createListing(window, panel, constraints, Window.getCatalog());
+        constraints = createCatalogTitle(panel, constraints, 0, 2);
+        constraints = createListing(window, panel, constraints, Window.getCatalog(), 0, 3);
         return panel;
     }
-    GridBagConstraints createScreenTitle(JPanel panel, GridBagConstraints constraints){
+    GridBagConstraints createScreenTitle(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel screenTitle = new JLabel("Seller Panel");
         screenTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 50, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 0;
-        constraints.ipady = 20;
-        
+
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 0, 20);
+
         panel.add(screenTitle, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
-    GridBagConstraints createAddButton(Window window, JPanel panel, GridBagConstraints constraints){
+    GridBagConstraints createAddButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JButton addButton = new JButton("Add Item to Catalog");
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
@@ -87,19 +83,13 @@ public class SellerScreen extends JScrollPane{
             }
         });
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 50, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 30;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 100, 30);
 
         panel.add(addButton, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
-    GridBagConstraints createBackButton(Window window, JPanel panel, GridBagConstraints constraints){
+    GridBagConstraints createBackButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JButton addButton = new JButton("Return to Login");
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
@@ -109,38 +99,29 @@ public class SellerScreen extends JScrollPane{
             }
         });
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = 1;
-        constraints.gridy = 1;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 320, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 30;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 320, 0, 0), 100, 30);
 
         panel.add(addButton, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
-    GridBagConstraints createCatalogTitle(JPanel panel, GridBagConstraints constraints){
-        JLabel screenTitle = new JLabel("Catalog");
-        screenTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
+    GridBagConstraints createCatalogTitle(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+        JLabel catalogTitle = new JLabel("Catalog");
+        catalogTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(50, 50, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 0;
-        constraints.ipady = 20;
-        
-        panel.add(screenTitle, constraints);
-        return constraints;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(50, 50, 0, 0), 0, 20);
+
+        panel.add(catalogTitle, constraints);
+        return ResetConstraints.reset(constraints);
     }
-    GridBagConstraints createListing(Window window, JPanel panel, GridBagConstraints constraints, productCatalog catalog){
+    GridBagConstraints createListing(Window window, JPanel panel, GridBagConstraints constraints, productCatalog catalog, int gridX, int gridY){
+        constraints.gridx = gridX;
+        constraints.gridy = gridY;
         for(int i = 0; i < catalog.allProducts.size(); i++){
             constraints = DisplayItem.createItemInfo(window, panel, constraints, catalog.allProducts.get(i), i);
+            constraints.gridy += 11;
         }
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
 }

@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import main.java.DreamTeam.Products.Product;
+import main.java.DreamTeam.Screen.ResetConstraints;
 import main.java.DreamTeam.Screen.Window;
 import main.java.DreamTeam.Screen.AddItemScreen.ChangeItem;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
@@ -69,186 +70,120 @@ public class ModifyDetails{
         JLabel nameTextbox = new JLabel("Details for this item");
         nameTextbox.setFont(new Font("Tahoma", Font.BOLD, 20));
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(0, 50, 10, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 10;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(0, 50, 10, 0), 100, 10);
         
         panel.add(nameTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createNameTitle(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel name = new JLabel("Name:");
         name.setFont(new Font("Tahoma", Font.BOLD, 15));
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 50, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 10;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 100, 10);
 
         panel.add(name, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createNameTextbox(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         nameTextbox = new JTextField(1);
         nameTextbox.setText(Window.getCatalog().allProducts.get(productIndex).getName());
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 115, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 200;
-        constraints.ipady = 10;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 115, 0, 0), 200, 10);
 
         panel.add(nameTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     //TODO: The code below is basically the most unDRY'd code ever. Figure out a way to DRY that code.
     private static GridBagConstraints createCompanyTitle(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel company = new JLabel("Company name:");
         company.setFont(new Font("Tahoma", Font.BOLD, 15));
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 50, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 10;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 100, 10);
 
         panel.add(company, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createCompanyTextbox(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         companyTextbox = new JTextField(1);
         companyTextbox.setText(Window.getCatalog().allProducts.get(productIndex).getCompany());
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 190, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 200;
-        constraints.ipady = 10;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 190, 0, 0), 200, 10);
 
         panel.add(companyTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createQuantityTitle(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel quantity = new JLabel("Quantity:");
         quantity.setFont(new Font("Tahoma", Font.BOLD, 15));
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 50, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 10;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 100, 10);
 
         panel.add(quantity, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createQuantityTextbox(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         quantityTextbox = new JFormattedTextField(NumberFormat.getNumberInstance());
         quantityTextbox.setValue(Window.getCatalog().allProducts.get(productIndex).getQuantity());
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 140, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 200;
-        constraints.ipady = 10;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 140, 0, 0), 200, 10);
 
         panel.add(quantityTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createPriceTitle(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel price = new JLabel("Price:");
         price.setFont(new Font("Tahoma", Font.BOLD, 15));
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 50, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 10;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 100, 10);
 
         panel.add(price, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createPriceTextbox(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         priceTextbox = new JFormattedTextField(NumberFormat.getCurrencyInstance());
         priceTextbox.setValue(Window.getCatalog().allProducts.get(productIndex).getPrice());
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 110, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 200;
-        constraints.ipady = 10;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 110, 0, 0), 200, 10);
 
         panel.add(priceTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createDescriptionTitle(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel description = new JLabel("Description");
         description.setFont(new Font("Tahoma", Font.BOLD, 15));
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 50, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 10;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 100, 10);
 
         panel.add(description, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
-    //Read the value of description only when it's about to be added.
     private static GridBagConstraints createDescriptionTextbox(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         descriptionTextbox = new JTextArea(0, 0);
         descriptionTextbox.setPreferredSize(new Dimension(600, 50));
         descriptionTextbox.setText(Window.getCatalog().allProducts.get(productIndex).getDescription());
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(5, 50, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 0;
-        constraints.ipady = 0;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 0, 0);
 
         panel.add(descriptionTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createAddButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JButton addButton = new JButton("Modify this item to Catalog");
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //Read all the values of GUI elements just before addition.
                 Product product = Window.getCatalog().allProducts.get(productIndex);
                 item = new ChangeItem(product.getClass().getSimpleName());
                 item.createProduct(
@@ -266,17 +201,11 @@ public class ModifyDetails{
             }
         });
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(20, 50, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 30;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(20, 50, 0, 0), 100, 30);
 
         panel.add(addButton, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createRemoveButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JButton addButton = new JButton("Remove this item");
@@ -293,31 +222,19 @@ public class ModifyDetails{
             }
         });
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(20, 360, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 30;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(20, 360, 0, 0), 100, 30);
 
         panel.add(addButton, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createBuffer(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel label = new JLabel("");
 
-        //Set the position of the component relative to grid layout.
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(0, 0, 0, 0);
-        //Set the size of the component
-        constraints.ipadx = 100;
-        constraints.ipady = 30;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(0, 0, 0, 0), 100, 30);
 
         panel.add(label, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
 }

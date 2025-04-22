@@ -37,7 +37,20 @@ public class Electronics extends Product{
     }
 
     @Override
-    public String toString(){
+    public final String toString(){
         return "Electronics, " + this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName + ", " + this.powerConsumption + ", " + this.weight + ", " + this.electronicColor;
+    }
+    @Override
+    public final Object[][] getAttributes(){
+        return new Object[][] {
+            {"Name", this.name},
+            {"Price", this.price},
+            {"Quantity", this.quantity},
+            {"Description", this.description},
+            {"Company Name", this.companyName},
+            {"Power Consumption", this.powerConsumption},
+            {"Weight", this.weight},
+            {"Color", this.electronicColor}
+        };
     }
 }
