@@ -116,11 +116,11 @@ public class SellerScreen extends JScrollPane{
         return ResetConstraints.reset(constraints);
     }
     GridBagConstraints createListing(Window window, JPanel panel, GridBagConstraints constraints, productCatalog catalog, int gridX, int gridY){
-        constraints.gridx = gridX;
-        constraints.gridy = gridY;
         for(int i = 0; i < catalog.allProducts.size(); i++){
-            constraints = DisplayItem.createItemInfo(window, panel, constraints, catalog.allProducts.get(i), i);
-            constraints.gridy += 11;
+            //gridY resets upon calling method, requires setting value every time on the loop.
+            constraints.gridy = gridY;
+            DisplayItem.createItemInfo(window, panel, constraints, catalog.allProducts.get(i), i);
+            gridY += 8;
         }
         return ResetConstraints.reset(constraints);
     }
