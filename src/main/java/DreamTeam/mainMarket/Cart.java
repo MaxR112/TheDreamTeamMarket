@@ -1,8 +1,6 @@
 package main.java.DreamTeam.mainMarket;
-
 import java.util.ArrayList;
 import main.java.DreamTeam.Products.Product;
-
 public class Cart {
 
     private ArrayList<Product> cartList;
