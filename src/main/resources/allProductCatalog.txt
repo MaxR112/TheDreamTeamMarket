@@ -1,4 +1,4 @@
-Electronics, Dell X15, 999.0, 3, RTX 4060 Gaming Laptop, RTX 4060 Gaming Laptop, 350 Watts, 4 pounds, Black
+Electronics, Dell X15, 999.0, 3, RTX 4060 Gaming Laptop, 350 Watts, 4 pounds, Black
 Electronics, Smart TV, 1299.99, 5, OLED Smart TV, Samsung, 200 Watts, 25 pounds, Silver
 Furniture, Leather Couch, 799.99, 4, Comfy leather couch, Comfy leather couch, Furniture Emporium, Leather, 62 pounds
 Furniture, Queen Size Bed, 599.99, 10, Memory foam bed, Memory foam bed, Furniture Emporium, Cloth, 72 pounds
