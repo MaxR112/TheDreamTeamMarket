@@ -48,7 +48,7 @@ public class Electronics extends Product{
             {"Quantity", this.quantity},
             {"Description", this.description},
             {"Company Name", this.companyName},
-            {"Power Consumption", this.powerConsumption},
+            {"Power", this.powerConsumption},
             {"Weight", this.weight},
             {"Color", this.electronicColor}
         };

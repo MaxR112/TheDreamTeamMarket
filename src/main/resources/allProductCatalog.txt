@@ -1,2 +1,6 @@
-Electronics, Dell X1522, 999.99, 5, 15-inch gaming laptop, 15-inch gaming laptop, 15-inch gaming laptop, 15-inch gaming laptop, 15-inch gaming laptop
-Clothing, Aqua-Man Shirt, 19.99, 10, Soft, Soft, Soft, Soft, Soft
+Electronics, Dell X15, 999.0, 3, RTX 4060 Gaming Laptop, RTX 4060 Gaming Laptop, 350 Watts, 4 pounds, Black
+Electronics, Smart TV, 1299.99, 5, OLED Smart TV, Samsung, 200 Watts, 25 pounds, Silver
+Furniture, Leather Couch, 799.99, 4, Comfy leather couch, Comfy leather couch, Furniture Emporium, Leather, 62 pounds
+Furniture, Queen Size Bed, 599.99, 10, Memory foam bed, Memory foam bed, Furniture Emporium, Cloth, 72 pounds
+Clothing, Aqua-Man Shirt, 19.99, 7, Aqua-Man super-hero shirt, Aqua-Man super-hero shirt, Super Shirts, Medium, T-Shirt
+Clothing, Adidas Sweatshirt, 49.99, 10, Adidias branded sweatshirt, Adidias branded sweatshirt, Adidas, Large, Sweatshirt
