@@ -1,5 +1,8 @@
 package main.java.DreamTeam.Screen.BuyerScreen;
 
+public class ViewCart {
+    package main.java.DreamTeam.Screen.BuyerScreen;
+
 import static javax.swing.JOptionPane.*;
 
 import java.awt.ComponentOrientation;
@@ -209,4 +212,6 @@ public class BuyerScreen extends JScrollPane{
         panel.add(modifyButton, constraints);
         return ResetConstraints.reset(constraints);
     }
+}
+
 }

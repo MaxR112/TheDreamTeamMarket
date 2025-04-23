@@ -26,8 +26,7 @@ public class productCart {
                     System.out.println("Increased quantity in cart: " + cartProduct.getName());
                     return true;
                 } else {
-                    System.out.println("Not enough stock for: " + catalogProduct.getName());
-                    return false;
+                    throw new IllegalArgumentException("Not enough stock for: " + catalogProduct.getName());
                 }
             }
         }
@@ -45,8 +44,8 @@ public class productCart {
             System.out.println("Added to cart: " + productCopy.getName());
             return true;
         } else {
-            System.out.println("Out of stock: " + catalogProduct.getName());
-            return false;
+            throw new IllegalArgumentException("Out of stock: " + catalogProduct.getName());
+            //System.out.println("Out of stock: " + catalogProduct.getName());
         }
     }
 

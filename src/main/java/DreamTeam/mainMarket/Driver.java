@@ -9,7 +9,7 @@ public class Driver{
     public static void main(String[] args) {
 
         productCatalog catalog = new productCatalog(fileReader.readAllProductCatalogAndSaveToArray());
-        productCart cart = new productCart(catalog);
+        // productCart cart = new productCart(catalog);
 
         //Run the screen operation on a seperate thread.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
