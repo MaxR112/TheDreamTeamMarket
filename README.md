@@ -18,7 +18,9 @@
     - The buyer section of our program allows users to view our catalog and add products to their cart as well as update quantities of items and remove items. This cart also includes the ability for users to checkout with their items.
     - The sller section of our program allows sellers to modify their items in our catalog as well as add new items to the catalog.
     - The product section of our program allows for storage of products through cleverly designed classes with a parent class covering all of the basics as to follow design principles.
-- The purpose of this project is to allow users to shop from our catalog in a easy way as well as give sellers a place to update their products.0
+
+- The purpose of this project is to allow users to shop from our catalog in a easy way as well as give sellers a place to update their products.
+
 - Technology Used
     - The language used for this project is Java.
     - We used two libraries in the development of our project (besides basic java libraries), Java Swing and Java AWT.
@@ -29,6 +31,7 @@
     - Download the files or clone the repository
     - Open the repository folder in whatever IDE you please, making sure to have Java installed.
     - Click run!
+    
 - This program uses text based file storage which allows for all of the changes made within the program to carry over to future instances.
 ### Features
 - GUI functionality
