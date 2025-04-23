@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import main.java.DreamTeam.Screen.ResetConstraints;
-import main.java.DreamTeam.Screen.Window;
+import main.java.DreamTeam.Screen.Assets.ResetConstraints;
+import main.java.DreamTeam.Screen.Assets.Window;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
 
 //TODO: pass catalog as a parameter?

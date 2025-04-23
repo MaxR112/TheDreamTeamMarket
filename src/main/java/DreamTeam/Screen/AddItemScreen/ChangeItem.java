@@ -4,7 +4,7 @@ import main.java.DreamTeam.Products.Clothing;
 import main.java.DreamTeam.Products.Electronics;
 import main.java.DreamTeam.Products.Furniture;
 import main.java.DreamTeam.Products.Product;
-import main.java.DreamTeam.Screen.Window;
+import main.java.DreamTeam.Screen.Assets.Window;
 import main.java.DreamTeam.fileHandler.fileWriter;
 
 public class ChangeItem {

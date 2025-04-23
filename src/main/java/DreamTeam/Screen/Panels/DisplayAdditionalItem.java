@@ -1,4 +1,4 @@
-package main.java.DreamTeam.Screen.SellerScreen;
+package main.java.DreamTeam.Screen.Panels;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -8,8 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.java.DreamTeam.Products.Product;
-import main.java.DreamTeam.Screen.ResetConstraints;
-import main.java.DreamTeam.Screen.Window;
+import main.java.DreamTeam.Screen.Assets.ResetConstraints;
+import main.java.DreamTeam.Screen.Assets.Window;
 
 public class DisplayAdditionalItem {
     static GridBagConstraints createItemInfo(

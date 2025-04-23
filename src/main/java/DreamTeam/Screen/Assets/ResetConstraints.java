@@ -1,4 +1,4 @@
-package main.java.DreamTeam.Screen;
+package main.java.DreamTeam.Screen.Assets;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;

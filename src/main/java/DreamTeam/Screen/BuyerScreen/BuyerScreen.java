@@ -1,4 +1,4 @@
-package main.java.DreamTeam.Screen.SellerScreen;
+package main.java.DreamTeam.Screen.BuyerScreen;
 
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
@@ -15,21 +15,20 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import main.java.DreamTeam.Screen.MainScreen;
-import main.java.DreamTeam.Screen.AddItemScreen.AddItemScreen;
 import main.java.DreamTeam.Screen.Assets.ResetConstraints;
 import main.java.DreamTeam.Screen.Assets.Window;
-import main.java.DreamTeam.Screen.ModifyItemScreen.ModifyItemScreen;
 import main.java.DreamTeam.Screen.Panels.DisplayItem;
 import main.java.DreamTeam.mainMarket.productCatalog;
 
 /**
  * High-level screen for sellers to add and remove items.
 */
-public class SellerScreen extends JScrollPane{
+public class BuyerScreen extends JScrollPane{
     /**
      * Init the screen with certain properties.
     */
-    public SellerScreen(Window window) {
+    public BuyerScreen(Window window) {
+
         //Set the constraints of layout manager (automatic rescaling and such)
         GridBagConstraints constraints = new GridBagConstraints();
 
@@ -58,37 +57,25 @@ public class SellerScreen extends JScrollPane{
         constraints = createScreenTitle(panel, constraints, 0, 0);
 
         constraints = createBackButton(window, panel, constraints, 0, 1);
-        constraints = createAddButton(window, panel, constraints, 1, 1);
 
-        constraints = createCatalogTitle(panel, constraints, 0, 2);
-        constraints = createListing(window, panel, constraints, Window.getCatalog(), 0, 3);
+        constraints = createCartTitle(panel, constraints, 0, 2);
+        constraints = createCartCount(panel, constraints, 0, 3);
+        constraints = createCartTotalPrice(panel, constraints, 0, 4);
+        constraints = createViewCartButton(window, panel, constraints, 0, 5);
+        constraints = createCheckoutButton(window, panel, constraints, 1, 5);
+
+        constraints = createCatalogTitle(panel, constraints, 0, 6);
+        constraints = createListing(window, panel, constraints, Window.getCatalog(), 0, 7);
         return panel;
     }
     GridBagConstraints createScreenTitle(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
-        JLabel screenTitle = new JLabel("Seller Panel");
+        JLabel screenTitle = new JLabel("Buyer Panel");
         screenTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
-
 
         constraints = ResetConstraints.setConstraints(
             constraints, gridX, gridY, new Insets(5, 50, 0, 0), 0, 20);
 
         panel.add(screenTitle, constraints);
-        return ResetConstraints.reset(constraints);
-    }
-    GridBagConstraints createAddButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
-        JButton addButton = new JButton("Add Item to Catalog");
-        //Inline way (and non-DRY way) to listen to button inputs.
-        addButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                window.setContentPane(new AddItemScreen(window));
-                window.validate();
-            }
-        });
-
-        constraints = ResetConstraints.setConstraints(
-            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 100, 30);
-
-        panel.add(addButton, constraints);
         return ResetConstraints.reset(constraints);
     }
     GridBagConstraints createBackButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
@@ -102,17 +89,85 @@ public class SellerScreen extends JScrollPane{
         });
 
         constraints = ResetConstraints.setConstraints(
-            constraints, gridX, gridY, new Insets(5, 320, 0, 0), 100, 30);
+            constraints, gridX, gridY, new Insets(5, 50, 5, 0), 100, 30);
 
         panel.add(addButton, constraints);
         return ResetConstraints.reset(constraints);
     }
+    
+    GridBagConstraints createCartTitle(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+        JLabel screenTitle = new JLabel("Your Cart");
+        screenTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 0, 20);
+
+        panel.add(screenTitle, constraints);
+        return ResetConstraints.reset(constraints);
+    }
+    GridBagConstraints createCartCount(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+        JLabel screenTitle = new JLabel("Items in cart: " + Window.getCart().getCartList().size());
+        screenTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 0, 5);
+
+        panel.add(screenTitle, constraints);
+        return ResetConstraints.reset(constraints);
+    }
+    GridBagConstraints createCartTotalPrice(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+        JLabel screenTitle = new JLabel("Total price: " + Window.getCart().getTotalCost());
+        screenTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 5, 0), 0, 5);
+
+        panel.add(screenTitle, constraints);
+        return ResetConstraints.reset(constraints);
+    }
+    GridBagConstraints createViewCartButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+        JButton addButton = new JButton("Checkout");
+        //Inline way (and non-DRY way) to listen to button inputs.
+        addButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO: add checkout screen.
+                System.out.println("checkout");
+                // window.setContentPane(new AddItemScreen(window));
+                // window.validate();
+            }
+        });
+
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 280, 0, 0), 100, 30);
+
+        panel.add(addButton, constraints);
+        return ResetConstraints.reset(constraints);
+    }
+    GridBagConstraints createCheckoutButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+        JButton addButton = new JButton("View Details");
+        //Inline way (and non-DRY way) to listen to button inputs.
+        addButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO: add view cart button.
+                System.out.println("view cart");
+                // window.setContentPane(new AddItemScreen(window));
+                // window.validate();
+            }
+        });
+
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(5, 50, 0, 0), 100, 30);
+
+        panel.add(addButton, constraints);
+        return ResetConstraints.reset(constraints);
+    }
+    
     GridBagConstraints createCatalogTitle(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
-        JLabel catalogTitle = new JLabel("Catalog");
+        JLabel catalogTitle = new JLabel("Buy Items");
         catalogTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
 
         constraints = ResetConstraints.setConstraints(
-            constraints, gridX, gridY, new Insets(50, 50, 0, 0), 0, 20);
+            constraints, gridX, gridY, new Insets(20, 50, 0, 0), 0, 20);
 
         panel.add(catalogTitle, constraints);
         return ResetConstraints.reset(constraints);
@@ -123,17 +178,19 @@ public class SellerScreen extends JScrollPane{
             constraints.gridy = gridY;
             DisplayItem.createItemInfo(window, panel, constraints, catalog.allProducts.get(i), i);
             constraints.gridy = gridY + 7;
-            constraints = createModifyButton(window, panel, constraints, i, gridX, gridY + 8);
+            constraints = createAddToCartButton(window, panel, constraints, i, gridX, gridY + 8);
             gridY += 8;
         }
         return ResetConstraints.reset(constraints);
     }
-    private static GridBagConstraints createModifyButton(Window window, JPanel panel, GridBagConstraints constraints, int productIndex, int gridX, int gridY){
-        JButton modifyButton = new JButton("Modify this item");
+        private static GridBagConstraints createAddToCartButton(Window window, JPanel panel, GridBagConstraints constraints, int productIndex, int gridX, int gridY){
+        JButton modifyButton = new JButton("Add to Cart");
         //Inline way (and non-DRY way) to listen to button inputs.
         modifyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                window.setContentPane(new ModifyItemScreen(window, productIndex));
+                Window.getCart().addProduct(Window.getCatalog().allProducts.get(productIndex).getName());
+                //Very stupid way to update the value but it works.
+                window.setContentPane(new BuyerScreen(window));
                 window.validate();
             }
         });
