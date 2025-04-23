@@ -188,23 +188,31 @@ public class ModifyDetails{
                 //Read all the values of GUI elements just before addition.
                 Product product = Window.getCatalog().allProducts.get(productIndex);
                 item = new ChangeItem(product.getClass().getSimpleName());
-                item.createProduct(
-                    nameTextbox.getText(),
-                    companyTextbox.getText(),
-                    ((Number)priceTextbox.getValue()).intValue(),
-                    ((Number)quantityTextbox.getValue()).intValue(),
-                    descriptionTextbox.getText());
+                boolean isThrown = false;
                 try{
+                    item.createProduct(
+                        nameTextbox.getText(),
+                        companyTextbox.getText(),
+                        ((Number)priceTextbox.getValue()).intValue(),
+                        ((Number)quantityTextbox.getValue()).intValue(),
+                        descriptionTextbox.getText());
                     Window.getCatalog().updateProduct(product.name, item.getProduct());
+                }
+                catch(NullPointerException ex){
+                    showMessageDialog(null, "There are missing values, please fill them out!");
+                    isThrown = true;
                 }
                 catch(Exception ex){
                     showMessageDialog(null, ex.getMessage());
+                    isThrown = true;
                 }
-                item.writeCatalogFile();
-                System.out.println("Successfully modified product to the catalog, and saved to the file.");
+                if(!isThrown){
+                    item.writeCatalogFile();
+                    System.out.println("Successfully modified product to the catalog, and saved to the file.");
 
-                window.setContentPane(new SellerScreen(window));
-                window.validate();
+                    window.setContentPane(new SellerScreen(window));
+                    window.validate();
+                }
             }
         });
 
