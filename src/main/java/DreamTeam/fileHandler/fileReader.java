@@ -20,6 +20,16 @@ public class fileReader implements Files{
         this.productFile = new File(this.filePath);
     }
 
+    public static ArrayList<Product> readAllProductCatalogAndSaveToArray() {
+        ArrayList<Product> productArray;
+
+        fileReader pr = new fileReader("allProductCatalog.txt");
+
+        pr.readFileAndStoreInList();
+        productArray = new ArrayList<>(pr.getProductListFromRead());
+        return productArray;
+    }
+
     public void readFileAndStoreInList(){
         checkForFileAndCreateIfNotPresent();
         try {
