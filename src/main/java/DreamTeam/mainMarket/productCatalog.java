@@ -76,8 +76,7 @@ public class productCatalog {
         return false;
     }
 
-    public void addProduct(Product product) {
-        try {
+    public void addProduct(Product product) throws Exception{
         for (Product productAlreadyInList : allProducts) {
             if (productAlreadyInList.getName().equals(product.getName())){
                 throw new Exception("Product name " + product.getName() + " already exists!");
@@ -86,12 +85,9 @@ public class productCatalog {
         allProducts.add(product);
         System.out.println("Added new product to catalog: " + product.getName()
                 + " (Type: " + product.getClass().getSimpleName() + ")");
-        }catch (Exception e){
-            System.out.println("Error: " + e);
-        }
     }
 
-    public boolean removeProduct(String name) {
+    public boolean removeProduct(String name) throws Exception{
         for (Product product : allProducts) {
             if (product.getName().equalsIgnoreCase(name)) {
                 allProducts.remove(product);
@@ -99,11 +95,10 @@ public class productCatalog {
                 return true;
             }
         }
-        System.out.println("Could not find product to remove: " + name);
-        return false;
+        throw new Exception("Could not find product to remove: " + name);
     }
 
-    public boolean updateProduct(String name, Product updatedProduct) {
+    public boolean updateProduct(String name, Product updatedProduct) throws Exception{
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getName().equalsIgnoreCase(name)) {
                 allProducts.set(i, updatedProduct);
@@ -111,8 +106,8 @@ public class productCatalog {
                 return true;
             }
         }
-        System.out.println("No product found with name: " + name + " to update.");
-        return false;
+        throw new Exception("No product found with name: " + name + " to update.");
+
     }
 
     private void displayProduct(Product product) {
