@@ -113,4 +113,12 @@ public class productCart {
     public ArrayList<Product> getCartList() {
         return cartList;
     }
+
+    public int getCountOfItemsInCart(){
+        int total = 0;
+        for (Product cartProduct : cartList){
+            total += cartProduct.getQuantity();
+        }
+        return total;
+    }
 }
