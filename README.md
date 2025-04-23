@@ -13,14 +13,13 @@
 
 ## Documenation
 ### Introduction
-- Summary of program
+- Summary
     - Our program introduces a powerful, custom made, graphical user interface that allows the user to interact with all of our programs capabilities through easily findable and interactable buttons and entry fields.
     - The buyer section of our program allows users to view our catalog and add products to their cart as well as update quantities of items and remove items. This cart also includes the ability for users to checkout with their items.
     - The sller section of our program allows sellers to modify their items in our catalog as well as add new items to the catalog.
     - The product section of our program allows for storage of products through cleverly designed classes with a parent class covering all of the basics as to follow design principles.
-- Purpose of project
-    - The purpose of this project is to allow users to shop from our catalog in a easy way as well as give sellers a place to update their products.
-- Tech uses
+- The purpose of this project is to allow users to shop from our catalog in a easy way as well as give sellers a place to update their products.0
+- Technology Used
     - The language used for this project is Java.
     - We used two libraries in the development of our project (besides basic java libraries), Java Swing and Java AWT.
         - These were used for the GUI development.
