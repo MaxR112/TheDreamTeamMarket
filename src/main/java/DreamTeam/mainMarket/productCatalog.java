@@ -24,7 +24,7 @@ public class productCatalog {
         }
     }
 
-    public ArrayList<Product> displayByProductType(String productType) {
+    public ArrayList<Product> displayByProductType(String productType) throws Exception{
         ArrayList<Product> filtered = new ArrayList<>();
         System.out.println("\n--- Products filtered by type: " + productType + " ---");
         for (Product product : allProducts) {
@@ -35,28 +35,31 @@ public class productCatalog {
         }
 
         if (filtered.isEmpty()) {
-            System.out.println("No products found in category: " + productType);
+            throw new Exception("No products found in category: " + productType);
         }
         return filtered;
     }
 
-    public double getProductCost(String name){
-        Product product = getProductByName(name);
-        return product.getPrice();
+    public double getProductCost(String name) throws Exception{
+        try{
+            Product product = getProductByName(name);
+            return product.getPrice();
+        } catch (Exception e){
+            throw new Exception("Product not found");
+        }
     }
 
-    public Product getProductByName(String name) {
+    public Product getProductByName(String name) throws Exception{
         for (Product product : allProducts) {
             if (product.getName().equalsIgnoreCase(name)) {
                 System.out.println("Found product: " + product.getName());
                 return product;
             }
         }
-        System.out.println("Product not found with name: " + name);
-        return null;
+        throw new Exception("Product not found with name: " + name);
     }
 
-    public boolean removeProductQuantity(String name, int quantityToSubtract) {
+    public boolean removeProductQuantity(String name, int quantityToSubtract) throws Exception{
         for (Product product : allProducts) {
             if (product.getName().equals(name)) {
                 int currentQty = product.getQuantity();
@@ -66,14 +69,12 @@ public class productCatalog {
                             + ": " + currentQty + " -> " + product.getQuantity());
                     return true;
                 } else {
-                    System.out.println("Insufficient quantity for " + product.getName()
+                    throw new Exception("Insufficient quantity for " + product.getName()
                             + ". Available: " + currentQty + ", Requested: " + quantityToSubtract);
-                    return false;
                 }
             }
         }
-        System.out.println("Product with name " + name + " not found.");
-        return false;
+        throw new Exception("Product with name " + name + " not found.");
     }
 
     public void addProduct(Product product) throws Exception{
