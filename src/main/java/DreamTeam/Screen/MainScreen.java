@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.java.DreamTeam.Screen.Assets.Window;
+import main.java.DreamTeam.Screen.BuyerScreen.BuyerScreen;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
 
 /**
@@ -65,8 +67,8 @@ public class MainScreen extends JPanel{
         //Inline way (and non-DRY way) to listen to button inputs.
         buyerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO: implement buyer screen.
-                System.out.println("buyer");
+                window.setContentPane(new BuyerScreen(window));
+                window.validate();
             }
         });
 

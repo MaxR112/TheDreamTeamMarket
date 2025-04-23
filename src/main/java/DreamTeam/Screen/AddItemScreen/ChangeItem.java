@@ -4,7 +4,7 @@ import main.java.DreamTeam.Products.Clothing;
 import main.java.DreamTeam.Products.Electronics;
 import main.java.DreamTeam.Products.Furniture;
 import main.java.DreamTeam.Products.Product;
-import main.java.DreamTeam.Screen.Window;
+import main.java.DreamTeam.Screen.Assets.Window;
 import main.java.DreamTeam.fileHandler.fileWriter;
 
 public class ChangeItem {
@@ -41,7 +41,7 @@ public class ChangeItem {
             default: throw new IllegalArgumentException("Invalid item type");
         }
     }
-    public void addToCatalog(){
+    public void addToCatalog() throws Exception{
         Window.getCatalog().addProduct(product);
     }
     public void writeCatalogFile(){

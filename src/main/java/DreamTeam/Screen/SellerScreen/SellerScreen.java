@@ -15,9 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import main.java.DreamTeam.Screen.MainScreen;
-import main.java.DreamTeam.Screen.ResetConstraints;
-import main.java.DreamTeam.Screen.Window;
 import main.java.DreamTeam.Screen.AddItemScreen.AddItemScreen;
+import main.java.DreamTeam.Screen.Assets.ResetConstraints;
+import main.java.DreamTeam.Screen.Assets.Window;
+import main.java.DreamTeam.Screen.ModifyItemScreen.ModifyItemScreen;
+import main.java.DreamTeam.Screen.Panels.DisplayItem;
 import main.java.DreamTeam.mainMarket.productCatalog;
 
 /**
@@ -120,8 +122,26 @@ public class SellerScreen extends JScrollPane{
             //gridY resets upon calling method, requires setting value every time on the loop.
             constraints.gridy = gridY;
             DisplayItem.createItemInfo(window, panel, constraints, catalog.allProducts.get(i), i);
+            constraints.gridy = gridY + 7;
+            constraints = createModifyButton(window, panel, constraints, i, gridX, gridY + 8);
             gridY += 8;
         }
+        return ResetConstraints.reset(constraints);
+    }
+    private static GridBagConstraints createModifyButton(Window window, JPanel panel, GridBagConstraints constraints, int productIndex, int gridX, int gridY){
+        JButton modifyButton = new JButton("Modify this item");
+        //Inline way (and non-DRY way) to listen to button inputs.
+        modifyButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                window.setContentPane(new ModifyItemScreen(window, productIndex));
+                window.validate();
+            }
+        });
+
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(10, 50, 40, 0), 50, 20);
+
+        panel.add(modifyButton, constraints);
         return ResetConstraints.reset(constraints);
     }
 }

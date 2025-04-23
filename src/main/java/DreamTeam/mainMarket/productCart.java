@@ -1,5 +1,6 @@
 package main.java.DreamTeam.mainMarket;
 import java.util.ArrayList;
+
 import main.java.DreamTeam.Products.Product;
 public class productCart {
 
@@ -11,11 +12,10 @@ public class productCart {
         this.cartList = new ArrayList<>();
     }
 
-    public boolean addProduct(String name) {
+    public boolean addProduct(String name) throws Exception{
         Product catalogProduct = catalog.getProductByName(name);
         if (catalogProduct == null) {
-            System.out.println("Product not found in catalog.");
-            return false;
+            throw new Exception("Product not found in catalog.");
         }
 
         for (Product cartProduct : cartList) {
@@ -25,8 +25,7 @@ public class productCart {
                     System.out.println("Increased quantity in cart: " + cartProduct.getName());
                     return true;
                 } else {
-                    System.out.println("Not enough stock for: " + catalogProduct.getName());
-                    return false;
+                    throw new Exception("Not enough stock for: " + catalogProduct.getName());
                 }
             }
         }
@@ -44,12 +43,11 @@ public class productCart {
             System.out.println("Added to cart: " + productCopy.getName());
             return true;
         } else {
-            System.out.println("Out of stock: " + catalogProduct.getName());
-            return false;
+            throw new Exception("Out of stock: " + catalogProduct.getName());
         }
     }
 
-    public void removeProduct(String name) {
+    public void removeProduct(String name) throws Exception {
         for (int i = 0; i < cartList.size(); i++) {
             if (cartList.get(i).getName().equalsIgnoreCase(name)) {
                 cartList.remove(i);
@@ -57,29 +55,29 @@ public class productCart {
                 return;
             }
         }
-        System.out.println("Product not found in cart: " + name);
+        throw new Exception("Product not found in cart: " + name);
     }
 
-    public void updateQuantityOfItemInCart(String name, int newQuantity){
+    public void updateQuantityOfItemInCart(String name, int newQuantity) throws Exception{
         for (Product product : cartList){
             if (product.getName().equalsIgnoreCase(name) && product.getQuantity() != newQuantity && catalog.getProductByName(name).getQuantity() >= newQuantity){
                 product.setQuantity(newQuantity);
             } else {
-                System.out.println("Could not update quantity.");
+                throw new Exception("Could not update quantity.");
             }
         }
     }
 
-    public void checkout() {
+    public void checkout()throws Exception {
         if (cartList.isEmpty()) {
             System.out.println("Cart is empty. Nothing to checkout.");
             return;
         }
 
-        for (Product cartProduct : cartList) {
+        for (Product cartProduct : cartList){
             boolean success = catalog.removeProductQuantity(cartProduct.getName(), cartProduct.getQuantity());
             if (!success) {
-                System.out.println("Could not complete checkout for: " + cartProduct.getName());
+                throw new Exception("Could not complete checkout for: " + cartProduct.getName());
             }
         }
 

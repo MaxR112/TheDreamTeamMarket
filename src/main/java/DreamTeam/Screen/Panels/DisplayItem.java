@@ -1,24 +1,20 @@
-package main.java.DreamTeam.Screen.SellerScreen;
+package main.java.DreamTeam.Screen.Panels;
 
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.java.DreamTeam.Products.Product;
-import main.java.DreamTeam.Screen.ResetConstraints;
-import main.java.DreamTeam.Screen.Window;
-import main.java.DreamTeam.Screen.ModifyItemScreen.ModifyItemScreen;
+import main.java.DreamTeam.Screen.Assets.ResetConstraints;
+import main.java.DreamTeam.Screen.Assets.Window;
 
 //TODO: add universal reset values in constraints.
 public class DisplayItem {
-    static GridBagConstraints createItemInfo(
+    public static GridBagConstraints createItemInfo(
             Window window, JPanel panel, GridBagConstraints constraints, Product product, int productIndex){
         //Get current positions that won't be altered.
         int gridX = constraints.gridx;
@@ -38,8 +34,6 @@ public class DisplayItem {
 
         constraints = createDescriptionTitle(panel, constraints, product, gridX, gridY + 6);
         constraints = createDescription(panel, constraints, product, gridX, gridY + 7);
-        
-        constraints = createModifyButton(window, panel, constraints, productIndex, gridX, gridY + 8);
 
         return ResetConstraints.reset(constraints);
     }
@@ -135,22 +129,6 @@ public class DisplayItem {
             constraints, gridX, gridY, new Insets(10, 50, 0, 0), 0, 5);
 
         panel.add(description, constraints);
-        return ResetConstraints.reset(constraints);
-    }
-    private static GridBagConstraints createModifyButton(Window window, JPanel panel, GridBagConstraints constraints, int productIndex, int gridX, int gridY){
-        JButton modifyButton = new JButton("Modify this item");
-        //Inline way (and non-DRY way) to listen to button inputs.
-        modifyButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                window.setContentPane(new ModifyItemScreen(window, productIndex));
-                window.validate();
-            }
-        });
-
-        constraints = ResetConstraints.setConstraints(
-            constraints, gridX, gridY, new Insets(10, 50, 40, 0), 50, 20);
-
-        panel.add(modifyButton, constraints);
         return ResetConstraints.reset(constraints);
     }
 }

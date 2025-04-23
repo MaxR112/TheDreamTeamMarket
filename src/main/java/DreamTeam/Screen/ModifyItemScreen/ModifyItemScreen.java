@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import main.java.DreamTeam.Products.Product;
-import main.java.DreamTeam.Screen.ResetConstraints;
-import main.java.DreamTeam.Screen.Window;
+import main.java.DreamTeam.Screen.Assets.ResetConstraints;
+import main.java.DreamTeam.Screen.Assets.Window;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
 
 //TODO: make it able to change item type as well.
