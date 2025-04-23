@@ -37,7 +37,20 @@ public class Clothing extends Product{
     }
 
     @Override
-    public String toString(){
+    public final String toString(){
         return "Clothing, " + this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName + ", " + this.size + ", " + this.clothingType + ", " + this.clothingColor;
+    }
+    @Override
+    public final Object[][] getAttributes(){
+        return new Object[][] {
+            {"Name", this.name},
+            {"Price", this.price},
+            {"Quantity", this.quantity},
+            {"Description", this.description},
+            {"Company Name", this.companyName},
+            {"Size", this.size},
+            {"Type", this.clothingType},
+            {"Color", this.clothingColor}
+        };
     }
 }

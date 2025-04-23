@@ -37,7 +37,20 @@ public class Furniture extends Product{
     }
 
     @Override
-    public String toString(){
+    public final String toString(){
         return "Furniture, " + this.name + ", " + this.price + ", " + this.quantity + ", " + this.description + ", " + this.companyName + ", " + this.material + ", " + this.weight + ", " + this.furnitureColor;
+    }
+    @Override
+    public final Object[][] getAttributes(){
+        return new Object[][] {
+            {"Name", this.name},
+            {"Price", this.price},
+            {"Quantity", this.quantity},
+            {"Description", this.description},
+            {"Company Name", this.companyName},
+            {"Material", this.material},
+            {"Weight", this.weight},
+            {"Color", this.furnitureColor}
+        };
     }
 }

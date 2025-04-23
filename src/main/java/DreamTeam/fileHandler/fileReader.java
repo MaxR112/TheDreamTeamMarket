@@ -66,15 +66,15 @@ public class fileReader implements Files{
     }
 
     private void createFurnitureObject(String[] individualLineValues) {
-        allProductsRead.add(new Furniture(individualLineValues[1], Double.parseDouble(individualLineValues[2]), Integer.parseInt(individualLineValues[3]), individualLineValues[4], individualLineValues[4], individualLineValues[5], individualLineValues[6], individualLineValues[7]));
+        allProductsRead.add(new Furniture(individualLineValues[1], Double.parseDouble(individualLineValues[2]), Integer.parseInt(individualLineValues[3]), individualLineValues[4], individualLineValues[5], individualLineValues[6], individualLineValues[7], individualLineValues[8]));
     }
 
     private void createClothingObject(String[] individualLineValues) {
-        allProductsRead.add(new Clothing(individualLineValues[1], Double.parseDouble(individualLineValues[2]), Integer.parseInt(individualLineValues[3]), individualLineValues[4], individualLineValues[4], individualLineValues[5], individualLineValues[6], individualLineValues[7]));
+        allProductsRead.add(new Clothing(individualLineValues[1], Double.parseDouble(individualLineValues[2]), Integer.parseInt(individualLineValues[3]), individualLineValues[4], individualLineValues[5], individualLineValues[6], individualLineValues[7], individualLineValues[8]));
     }
 
     private void createElectronicObject(String[] individualLineValues) {
-        allProductsRead.add(new Electronics(individualLineValues[1], Double.parseDouble(individualLineValues[2]), Integer.parseInt(individualLineValues[3]), individualLineValues[4], individualLineValues[4], individualLineValues[5], individualLineValues[6], individualLineValues[7]));
+        allProductsRead.add(new Electronics(individualLineValues[1], Double.parseDouble(individualLineValues[2]), Integer.parseInt(individualLineValues[3]), individualLineValues[4], individualLineValues[5], individualLineValues[6], individualLineValues[7], individualLineValues[8]));
     }
 
 }

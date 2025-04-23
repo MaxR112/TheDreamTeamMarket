@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import main.java.DreamTeam.Screen.ResetConstraints;
 import main.java.DreamTeam.Screen.Window;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
 
@@ -75,7 +76,7 @@ public class AddDetails{
         constraints.ipady = 10;
         
         panel.add(nameTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createNameTitle(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel name = new JLabel("Name:");
@@ -91,7 +92,7 @@ public class AddDetails{
         constraints.ipady = 10;
 
         panel.add(name, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createNameTextbox(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         nameTextbox = new JTextField(1);
@@ -106,7 +107,7 @@ public class AddDetails{
         constraints.ipady = 10;
 
         panel.add(nameTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     //TODO: The code below is basically the most unDRY'd code ever. Figure out a way to DRY that code.
     private static GridBagConstraints createCompanyTitle(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
@@ -123,7 +124,7 @@ public class AddDetails{
         constraints.ipady = 10;
 
         panel.add(company, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createCompanyTextbox(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         companyTextbox = new JTextField(1);
@@ -138,7 +139,7 @@ public class AddDetails{
         constraints.ipady = 10;
 
         panel.add(companyTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createQuantityTitle(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel quantity = new JLabel("Quantity:");
@@ -154,7 +155,7 @@ public class AddDetails{
         constraints.ipady = 10;
 
         panel.add(quantity, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createQuantityTextbox(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         quantityTextbox = new JFormattedTextField(NumberFormat.getNumberInstance());
@@ -169,7 +170,7 @@ public class AddDetails{
         constraints.ipady = 10;
 
         panel.add(quantityTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createPriceTitle(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel price = new JLabel("Price:");
@@ -185,7 +186,7 @@ public class AddDetails{
         constraints.ipady = 10;
 
         panel.add(price, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createPriceTextbox(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         priceTextbox = new JFormattedTextField(NumberFormat.getCurrencyInstance());
@@ -200,7 +201,7 @@ public class AddDetails{
         constraints.ipady = 10;
 
         panel.add(priceTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createDescriptionTitle(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel description = new JLabel("Description");
@@ -216,7 +217,7 @@ public class AddDetails{
         constraints.ipady = 10;
 
         panel.add(description, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     //Read the value of description only when it's about to be added.
     private static GridBagConstraints createDescriptionTextbox(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
@@ -233,7 +234,7 @@ public class AddDetails{
         constraints.ipady = 0;
 
         panel.add(descriptionTextbox, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createAddButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JButton addButton = new JButton("Add Item to Catalog");
@@ -266,7 +267,7 @@ public class AddDetails{
         constraints.ipady = 30;
 
         panel.add(addButton, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     private static GridBagConstraints createBuffer(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel label = new JLabel("");
@@ -281,6 +282,6 @@ public class AddDetails{
         constraints.ipady = 30;
 
         panel.add(label, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
 }

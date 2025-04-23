@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import main.java.DreamTeam.Products.Product;
+import main.java.DreamTeam.Screen.ResetConstraints;
 import main.java.DreamTeam.Screen.Window;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
 
@@ -85,7 +86,7 @@ public class ModifyItemScreen extends JScrollPane {
         constraints.ipady = 20;
         
         panel.add(screenTitle, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     GridBagConstraints createBackButton(Window window, JPanel panel, GridBagConstraints constraints){
         JButton addButton = new JButton("Return to Catalog");
@@ -107,7 +108,7 @@ public class ModifyItemScreen extends JScrollPane {
         constraints.ipady = 30;
 
         panel.add(addButton, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     GridBagConstraints createItemTypeTitle(JPanel panel, GridBagConstraints constraints){
         JLabel screenTitle = new JLabel("Item Type: ");
@@ -122,7 +123,7 @@ public class ModifyItemScreen extends JScrollPane {
         constraints.ipady = 20;
         
         panel.add(screenTitle, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     GridBagConstraints createItemTypeDropdown(Window window, JPanel panel, GridBagConstraints constraints, String[] itemTypes, Product item){
         JComboBox<String> itemTypeDropdown = new JComboBox<String>(itemTypes);
@@ -160,18 +161,19 @@ public class ModifyItemScreen extends JScrollPane {
         constraints.ipady = 10;
 
         panel.add(itemTypeDropdown, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     public GridBagConstraints ShowDetailsPanel(Window window, JPanel panel, JComboBox<String> dropdown, GridBagConstraints constraints){
         panel.remove(detailsPanel);
         detailsPanel = initPanel(new JPanel());
         detailsPanel = ModifyDetails.createLayout(detailsPanel, window, constraints, productIndex);
+        //Jank to fix layout.
+        constraints.gridy = 3;
         panel.add(detailsPanel, constraints);
+        constraints.gridy = 0;
 
-        //Set to that value specifically for other items to be added.
-        constraints.gridy = 6;
         panel.revalidate();
 
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
 }

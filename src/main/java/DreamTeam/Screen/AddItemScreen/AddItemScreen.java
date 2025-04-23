@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import main.java.DreamTeam.Screen.ResetConstraints;
 import main.java.DreamTeam.Screen.Window;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
 
@@ -73,7 +74,7 @@ public class AddItemScreen extends JScrollPane {
         constraints.ipady = 20;
         
         panel.add(screenTitle, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     GridBagConstraints createBackButton(Window window, JPanel panel, GridBagConstraints constraints){
         JButton addButton = new JButton("Return to Catalog");
@@ -95,7 +96,7 @@ public class AddItemScreen extends JScrollPane {
         constraints.ipady = 30;
 
         panel.add(addButton, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     GridBagConstraints createItemTypeTitle(JPanel panel, GridBagConstraints constraints){
         JLabel screenTitle = new JLabel("Item Type: ");
@@ -110,7 +111,7 @@ public class AddItemScreen extends JScrollPane {
         constraints.ipady = 20;
         
         panel.add(screenTitle, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
     GridBagConstraints createItemTypeDropdown(Window window, JPanel panel, GridBagConstraints constraints, String[] itemTypes){
         JComboBox<String> itemTypeDropdown = new JComboBox<String>(itemTypes);
@@ -123,15 +124,20 @@ public class AddItemScreen extends JScrollPane {
                     panel.remove(detailsPanel);
                     detailsPanel = initPanel(new JPanel());
                     detailsPanel = AddDetails.createLayout(detailsPanel, window, constraints, selection);
+                    //Jank to fix layout.
+                    constraints.gridy = 3;
                     panel.add(detailsPanel, constraints);
+                    constraints.gridy = 0;
                 }
                 else{
                     panel.remove(detailsPanel);
                 }
 
                 //Set to that value specifically for other items to be added.
-                constraints.gridy = 6;
+                //constraints.gridy = 6;
                 panel.revalidate();
+                constraints.gridx = 0;
+                constraints.gridy = 10;
             }
         });
 
@@ -145,6 +151,6 @@ public class AddItemScreen extends JScrollPane {
         constraints.ipady = 10;
 
         panel.add(itemTypeDropdown, constraints);
-        return constraints;
+        return ResetConstraints.reset(constraints);
     }
 }

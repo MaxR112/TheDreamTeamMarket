@@ -1,3 +1,1 @@
-Clothing, Aqua-Man Shirt, 19.99, 10, Soft, Soft, Soft, Soft, Soft
-Electronics, robert, 10000.0, 1, Robert, Robert, Robert, robert inc, null
-Furniture, Couch, 989.0, 10, Comfy jean couch, Furniture Store, null, null, null
+Electronics, Smart TV, 999.0, 10, This is a tv, Samsung, null, null, null
