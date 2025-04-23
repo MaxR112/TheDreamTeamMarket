@@ -15,6 +15,7 @@ public class Driver{
         allProducts = readAllProductCatalogAndSaveToArray();
 
         productCatalog catalog = new productCatalog(allProducts);
+        productCart cart = new productCart(catalog);
 
         //Run the screen operation on a seperate thread.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
