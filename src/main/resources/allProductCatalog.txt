@@ -1,1 +1,2 @@
-Electronics, Smart TV, 999.0, 10, This is a tv, Samsung, null, null, null
+Electronics, Smart TV, 999.0, 20, This is a tv, Samsung, null, null, null
+Electronics, TV, 49.0, 100, This is a really cheap tv, Samsung, null, null, null
