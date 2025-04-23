@@ -41,7 +41,7 @@ public class ChangeItem {
             default: throw new IllegalArgumentException("Invalid item type");
         }
     }
-    public void addToCatalog(){
+    public void addToCatalog() throws Exception{
         Window.getCatalog().addProduct(product);
     }
     public void writeCatalogFile(){

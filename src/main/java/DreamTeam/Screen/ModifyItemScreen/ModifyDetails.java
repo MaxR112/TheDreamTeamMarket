@@ -1,5 +1,7 @@
 package main.java.DreamTeam.Screen.ModifyItemScreen;
 
+import static javax.swing.JOptionPane.*;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -192,7 +194,12 @@ public class ModifyDetails{
                     ((Number)priceTextbox.getValue()).intValue(),
                     ((Number)quantityTextbox.getValue()).intValue(),
                     descriptionTextbox.getText());
-                Window.getCatalog().updateProduct(product.name, item.getProduct());
+                try{
+                    Window.getCatalog().updateProduct(product.name, item.getProduct());
+                }
+                catch(Exception ex){
+                    showMessageDialog(null, ex.getMessage());
+                }
                 item.writeCatalogFile();
                 System.out.println("Successfully modified product to the catalog, and saved to the file.");
 
@@ -212,13 +219,23 @@ public class ModifyDetails{
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Window.getCatalog().removeProduct(Window.getCatalog().allProducts.get(productIndex).name);
-                System.out.println("Successfully removed product from the catalog, and saved to the file.");
+                String name = Window.getCatalog().allProducts.get(productIndex).name;
+                boolean isThrown = false;
+                try{
+                    Window.getCatalog().removeProduct(name);
+                    System.out.println("Successfully removed product from the catalog, and saved to the file.");
+                }
+                catch(Exception ex){
+                    showMessageDialog(null, ex.getMessage());
+                    isThrown = true;
+                }
+                //Don't switch screens when exception is thrown, don't write to catalog as well.
+                if(!isThrown){
+                    window.setContentPane(new SellerScreen(window));
+                    window.validate();
 
-                window.setContentPane(new SellerScreen(window));
-                window.validate();
-
-                item.writeCatalogFile();
+                    item.writeCatalogFile();
+                }
             }
         });
 

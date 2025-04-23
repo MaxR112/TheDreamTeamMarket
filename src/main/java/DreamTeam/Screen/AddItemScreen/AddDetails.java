@@ -1,5 +1,7 @@
 package main.java.DreamTeam.Screen.AddItemScreen;
 
+import static javax.swing.JOptionPane.*;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -241,19 +243,33 @@ public class AddDetails{
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                boolean isThrown = false;
                 //TODO: maybe don't instantiate a product?
-                item.createProduct(
-                    nameTextbox.getText(),
-                    companyTextbox.getText(),
-                    ((Number)priceTextbox.getValue()).intValue(),
-                    ((Number)quantityTextbox.getValue()).intValue(),
-                    descriptionTextbox.getText());
-                item.addToCatalog();
-                item.writeCatalogFile();
-                System.out.println("Successfully added product to the catalog, and saved to the file.");
-
-                window.setContentPane(new SellerScreen(window));
-                window.validate();
+                try{
+                    //Ensure all of these operations run successfully before switching screens.
+                    item.createProduct(
+                        nameTextbox.getText(),
+                        companyTextbox.getText(),
+                        ((Number)priceTextbox.getValue()).intValue(),
+                        ((Number)quantityTextbox.getValue()).intValue(),
+                        descriptionTextbox.getText());
+                    item.addToCatalog();
+                }
+                catch(NullPointerException ex){
+                    showMessageDialog(null, "There are missing values, please fill them out!");
+                    isThrown = true;
+                }
+                catch(Exception ex){
+                    showMessageDialog(null, ex.getMessage());
+                    isThrown = true;
+                }
+                if(!isThrown){
+                    item.writeCatalogFile();
+                    System.out.println("Successfully added product to the catalog, and saved to the file.");
+    
+                    window.setContentPane(new SellerScreen(window));
+                    window.validate();
+                }
             }
         });
 

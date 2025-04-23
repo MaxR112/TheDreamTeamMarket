@@ -191,15 +191,21 @@ public class BuyerScreen extends JScrollPane{
         modifyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String productName = Window.getCatalog().allProducts.get(productIndex).getName();
+                boolean isThrown = false;
                 try{
                     Window.getCart().addProduct(productName);
                 }
-                catch(IllegalArgumentException ex){
+                catch(Exception ex){
+                    isThrown = true;
                     showMessageDialog(null, ex.getMessage());
                 }
-                //Very stupid way to update the value but it works.
-                window.setContentPane(new BuyerScreen(window));
-                window.validate();
+
+                //Prevent switching when exception is thrown so it stays in the same spot.
+                if(!isThrown){
+                    //Very stupid way to update the value but it works.
+                    window.setContentPane(new BuyerScreen(window));
+                    window.validate();
+                }
             }
         });
 
