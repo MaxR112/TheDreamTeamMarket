@@ -1,4 +1,4 @@
 Electronics, Smart TV, 999.0, 5, This is a tv, Samsung, null, null, null
-Furniture, Marble Cabinet, 1999.99, 50, This is a cabinet, CabinetStories, Marble, 50lb, Black-Brown
+Furniture, Marble Cabinet, 1999.0, 50, This is a cabinet, CabinetStories, null, null, null
 Clothing, T-Shirt, 599.99, 1, Lorem ipsum dolor sit amet consectetur adipiscing elit. Ex sapien vitae pellentesque sem placerat in id. Pretium tellus duis convallis tempus leo eu aenean. Urna tempor pulvinar vivamus fringilla lacus nec metus. Iaculis massa nisl malesuada lacinia integer nunc posuere. Semper vel class aptent taciti sociosqu ad litora. Conubia nostra inceptos himenaeos orci varius natoque penatibus. Dis parturient montes nascetur ridiculus mus donec rhoncus. Nulla molestie mattis scelerisque maximus eget fermentum odio. Purus est efficitur laoreet mauris pharetra vestibulum fusce., InsertT-Shirt, 5, T-Shirt, White
 Furniture, Wooden Table, 1599.99, 25, insert description here, DreamTeam, Wood, 60lb, Brown
