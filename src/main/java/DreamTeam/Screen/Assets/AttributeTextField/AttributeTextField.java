@@ -1,4 +1,4 @@
-package main.java.DreamTeam.Screen.Assets;
+package main.java.DreamTeam.Screen.Assets.AttributeTextField;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -8,9 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.java.DreamTeam.Screen.Assets.ResetConstraints;
+
 public class AttributeTextField {
     public static GridBagConstraints createAttributeTitle(
-            JPanel panel, GridBagConstraints constraints, String attributeName, String value, int gridX, int gridY){
+            JPanel panel, GridBagConstraints constraints, String attributeName, int gridX, int gridY){
         JLabel attributeTitle = new JLabel(attributeName);
         attributeTitle.setFont(new Font("Tahoma", Font.BOLD, 15));
 
@@ -23,6 +25,7 @@ public class AttributeTextField {
     public static returnValues createAttribute(
             JPanel panel, GridBagConstraints constraints, String attributeName, String value, int gridX, int gridY){
         JTextField field = new JTextField(1);
+        field.setText(value);
 
         constraints = ResetConstraints.setConstraints(
             constraints, gridX, gridY, new Insets(0, 50 + (120 * gridX), 0, 0), 200, 10);

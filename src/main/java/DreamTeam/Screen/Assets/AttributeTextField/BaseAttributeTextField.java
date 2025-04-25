@@ -1,4 +1,4 @@
-package main.java.DreamTeam.Screen.Assets;
+package main.java.DreamTeam.Screen.Assets.AttributeTextField;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import main.java.DreamTeam.Screen.Assets.ResetConstraints;
+import main.java.DreamTeam.Screen.Assets.Window;
 
 public class BaseAttributeTextField {
     private JTextField nameTextbox;

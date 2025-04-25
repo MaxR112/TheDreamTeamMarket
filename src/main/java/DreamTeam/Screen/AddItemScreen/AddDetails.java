@@ -13,25 +13,26 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.java.DreamTeam.Screen.Assets.AttributeTextField.modifyAttributes;
-import main.java.DreamTeam.Screen.Assets.BaseAttributeTextField;
 import main.java.DreamTeam.Screen.Assets.ChangeItem;
+import main.java.DreamTeam.Screen.Assets.CreateAdditionalAttributes;
 import main.java.DreamTeam.Screen.Assets.ResetConstraints;
 import main.java.DreamTeam.Screen.Assets.Window;
+import main.java.DreamTeam.Screen.Assets.AttributeTextField.AttributeTextField;
+import main.java.DreamTeam.Screen.Assets.AttributeTextField.BaseAttributeTextField;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
 
 //TODO: pass catalog as a parameter?
 public class AddDetails{
     //This is stored as a private static variable for when the items are added eventually (this is to fix forcing pressing enter)
     private static BaseAttributeTextField textFields = new BaseAttributeTextField();
-    private static ArrayList<modifyAttributes> otherTextField;
+    private static ArrayList<AttributeTextField.modifyAttributes> otherTextField;
     private static ChangeItem item;
 
     public static JPanel createLayout(JPanel panel, Window window, GridBagConstraints constraints, String productType){
         item = new ChangeItem(productType);
         item.createProduct("", "", 0, 0, "");
 
-        otherTextField = new ArrayList<>();
+        otherTextField = new ArrayList<AttributeTextField.modifyAttributes>();
 
         int gridX = constraints.gridx;
         int gridY = constraints.gridy;
@@ -61,7 +62,7 @@ public class AddDetails{
         constraints = textFields.createDescriptionTextbox(window, panel, constraints, null, gridX, gridY + 7);
 
         //This affects constraints
-        otherTextField = ModifyAttribute.createLayout(panel, window, constraints, item, otherTextField, gridX, gridY + 8);
+        otherTextField = CreateAdditionalAttributes.createLayout(panel, window, constraints, item, otherTextField, gridX, gridY + 8);
         //Set to new constraints after creating additional attribute layout.
         gridX = constraints.gridx;
         gridY = constraints.gridy;
@@ -103,12 +104,16 @@ public class AddDetails{
                         ((Number)textFields.getQuantityTextbox().getValue()).intValue(),
                         textFields.getDescriptionTextbox().getText());
 
-                    item.setProduct(ModifyAttribute.readAttributeFields(item.getProduct(), otherTextField));
+                    item.setProduct(CreateAdditionalAttributes.readAttributeFields(item.getProduct(), otherTextField));
 
                     item.addToCatalog();
                 }
                 catch(NullPointerException ex){
                     showMessageDialog(null, "There are missing values, please fill them out!");
+                    isThrown = true;
+                }
+                catch(IllegalArgumentException ex){
+                    showMessageDialog(null, ex.getMessage());
                     isThrown = true;
                 }
                 catch(Exception ex){
