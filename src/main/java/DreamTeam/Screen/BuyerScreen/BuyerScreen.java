@@ -2,11 +2,9 @@ package main.java.DreamTeam.Screen.BuyerScreen;
 
 import static javax.swing.JOptionPane.*;
 
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,18 +32,9 @@ public class BuyerScreen extends JScrollPane{
         //Set the constraints of layout manager (automatic rescaling and such)
         GridBagConstraints constraints = new GridBagConstraints();
 
-        JPanel panel = initPanel(new JPanel());
+        JPanel panel = Window.initPanel(new JPanel());
         this.setPreferredSize(new Dimension(Window.getScreenWidth(), Window.getScreenHeight()));
         this.setViewportView(createLayout(panel, window, constraints));
-    }
-    /**Init the panel with the layout set to a grid layout. */
-    JPanel initPanel(JPanel panel){
-        //Settings for the screen.
-        panel.setVisible(true);
-        panel.setLayout(new GridBagLayout());
-        //panel.setPreferredSize(new Dimension(Window.getScreenWidth(), panel.getPreferredSize().height));
-        panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        return panel;
     }
     JPanel createLayout(JPanel panel, Window window, GridBagConstraints constraints){
         //Properties for all elements
@@ -128,32 +117,12 @@ public class BuyerScreen extends JScrollPane{
         return ResetConstraints.reset(constraints);
     }
     GridBagConstraints createViewCartButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
-        JButton addButton = new JButton("Checkout");
+        JButton addButton = new JButton("View Cart");
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO: add checkout screen.
-                System.out.println("checkout");
-                // window.setContentPane(new AddItemScreen(window));
-                // window.validate();
-            }
-        });
-
-        constraints = ResetConstraints.setConstraints(
-            constraints, gridX, gridY, new Insets(5, 280, 0, 0), 100, 30);
-
-        panel.add(addButton, constraints);
-        return ResetConstraints.reset(constraints);
-    }
-    GridBagConstraints createCheckoutButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
-        JButton addButton = new JButton("View Details");
-        //Inline way (and non-DRY way) to listen to button inputs.
-        addButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //TODO: add view cart button.
-                System.out.println("view cart");
-                // window.setContentPane(new AddItemScreen(window));
-                // window.validate();
+                window.setContentPane(new ViewCart(window));
+                window.validate();
             }
         });
 
@@ -161,6 +130,24 @@ public class BuyerScreen extends JScrollPane{
             constraints, gridX, gridY, new Insets(5, 50, 0, 0), 100, 30);
 
         panel.add(addButton, constraints);
+        return ResetConstraints.reset(constraints);
+    }
+    GridBagConstraints createCheckoutButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+        if(Window.getCart().getCountOfItemsInCart() != 0){
+            JButton addButton = new JButton("Checkout");
+            //Inline way (and non-DRY way) to listen to button inputs.
+            addButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    window.setContentPane(new Checkout(window));
+                    window.validate();
+                }
+            });
+    
+            constraints = ResetConstraints.setConstraints(
+                constraints, gridX, gridY, new Insets(5, 265, 0, 0), 100, 30);
+    
+            panel.add(addButton, constraints);
+        }
         return ResetConstraints.reset(constraints);
     }
     

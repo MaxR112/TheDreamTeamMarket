@@ -11,6 +11,11 @@ public class Electronics extends Product{
         this.weight = weight;
         this.electronicColor = electronicColor;
     }
+    
+    @Override
+    public Product cloneProduct(){
+        return new Electronics(this.name, this.price, this.quantity, this.description, this.companyName, this.powerConsumption, this.weight, this.electronicColor);
+    }
 
     public String getPowerConsumption(){
         return this.powerConsumption;
@@ -52,5 +57,34 @@ public class Electronics extends Product{
             {"Weight", this.weight},
             {"Color", this.electronicColor}
         };
+    }
+    @Override
+    public void setAttributes(Object[][] objects) throws IndexOutOfBoundsException {
+        for(Object[] object : objects){
+            if(String.valueOf(object[0]) == "Name"){
+                this.name = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Price"){
+                this.price = (Double)object[1];
+            }
+            if(String.valueOf(object[0]) == "Quantity"){
+                this.quantity = (Integer)object[1];
+            }
+            if(String.valueOf(object[0]) == "Description"){
+                this.description = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Company Name"){
+                this.companyName = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Power"){
+                this.powerConsumption = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Weight"){
+                this.weight = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Color"){
+                this.electronicColor = String.valueOf(object[1]);
+            }
+        }
     }
 }

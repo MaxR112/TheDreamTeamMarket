@@ -12,7 +12,7 @@ import main.java.DreamTeam.Screen.Assets.ResetConstraints;
 import main.java.DreamTeam.Screen.Assets.Window;
 
 public class DisplayAdditionalItem {
-    static GridBagConstraints createItemInfo(
+    public static GridBagConstraints createItemInfo(
             Window window, JPanel panel, GridBagConstraints constraints, Product product, int gridX, int gridY){
         //Get current positions that won't be altered.
         for(int i = 0; i < product.getAttributes().length; i++){

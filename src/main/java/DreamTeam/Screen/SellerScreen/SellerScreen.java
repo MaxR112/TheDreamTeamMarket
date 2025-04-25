@@ -1,10 +1,8 @@
 package main.java.DreamTeam.Screen.SellerScreen;
 
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,18 +31,9 @@ public class SellerScreen extends JScrollPane{
         //Set the constraints of layout manager (automatic rescaling and such)
         GridBagConstraints constraints = new GridBagConstraints();
 
-        JPanel panel = initPanel(new JPanel());
+        JPanel panel = Window.initPanel(new JPanel());
         this.setPreferredSize(new Dimension(Window.getScreenWidth(), Window.getScreenHeight()));
         this.setViewportView(createLayout(panel, window, constraints));
-    }
-    /**Init the panel with the layout set to a grid layout. */
-    JPanel initPanel(JPanel panel){
-        //Settings for the screen.
-        panel.setVisible(true);
-        panel.setLayout(new GridBagLayout());
-        //panel.setPreferredSize(new Dimension(Window.getScreenWidth(), panel.getPreferredSize().height));
-        panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        return panel;
     }
     JPanel createLayout(JPanel panel, Window window, GridBagConstraints constraints){
         //Properties for all elements
@@ -67,7 +56,6 @@ public class SellerScreen extends JScrollPane{
     GridBagConstraints createScreenTitle(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel screenTitle = new JLabel("Seller Panel");
         screenTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
-
 
         constraints = ResetConstraints.setConstraints(
             constraints, gridX, gridY, new Insets(5, 50, 0, 0), 0, 20);

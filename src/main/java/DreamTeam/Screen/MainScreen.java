@@ -1,10 +1,8 @@
 package main.java.DreamTeam.Screen;
 
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,16 +25,9 @@ public class MainScreen extends JPanel{
     public MainScreen(Window window) {
         //Set the constraints of layout manager (automatic rescaling and such)
         GridBagConstraints constraints = new GridBagConstraints();
-        createLayout(window, initPanel(this), constraints);
-    }
-    /**Init the panel with the layout set to a grid layout. */
-    JPanel initPanel(JPanel panel){
-        //Settings for the screen.
-        panel.setVisible(true);
-        panel.setLayout(new GridBagLayout());
+        JPanel panel = Window.initPanel(this);
         panel.setPreferredSize(new Dimension(Window.getScreenWidth(), Window.getScreenHeight()));
-        panel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        return panel;
+        createLayout(window, panel, constraints);
     }
     /**Create the layout of the panel, while setting properties for each element inside a part of the grid. */
     void createLayout(Window window, JPanel panel, GridBagConstraints constraints){

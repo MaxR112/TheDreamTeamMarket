@@ -1,10 +1,9 @@
-package main.java.DreamTeam.Screen.AddItemScreen;
+package main.java.DreamTeam.Screen.Assets;
 
 import main.java.DreamTeam.Products.Clothing;
 import main.java.DreamTeam.Products.Electronics;
 import main.java.DreamTeam.Products.Furniture;
 import main.java.DreamTeam.Products.Product;
-import main.java.DreamTeam.Screen.Assets.Window;
 import main.java.DreamTeam.fileHandler.fileWriter;
 
 public class ChangeItem {
@@ -51,5 +50,8 @@ public class ChangeItem {
     }
     public Product getProduct(){
         return product;
+    }
+    public void setProduct(Product product){
+        this.product = product;
     }
 }

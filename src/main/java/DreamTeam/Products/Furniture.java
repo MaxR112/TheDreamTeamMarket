@@ -12,6 +12,12 @@ public class Furniture extends Product{
         this.furnitureColor = furnitureColor;
     }
 
+    @Override
+    public Product cloneProduct(){
+        return new Furniture(this.name, this.price, this.quantity, this.description, this.companyName, this.material, this.weight, this.furnitureColor);
+    }
+
+
     public String getMaterial(){
         return this.material;
     }
@@ -52,5 +58,34 @@ public class Furniture extends Product{
             {"Weight", this.weight},
             {"Color", this.furnitureColor}
         };
+    }
+    @Override
+    public void setAttributes(Object[][] objects) throws IndexOutOfBoundsException {
+        for(Object[] object : objects){
+            if(String.valueOf(object[0]) == "Name" && object[1].getClass().getSimpleName() == "Integer"){
+                this.name = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Price"){
+                this.price = (Double)object[1];
+            }
+            if(String.valueOf(object[0]) == "Quantity"){
+                this.quantity = (Integer)object[1];
+            }
+            if(String.valueOf(object[0]) == "Description"){
+                this.description = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Company Name"){
+                this.companyName = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Material"){
+                this.material = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Weight"){
+                this.weight = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Color"){
+                this.furnitureColor = String.valueOf(object[1]);
+            }
+        }
     }
 }
