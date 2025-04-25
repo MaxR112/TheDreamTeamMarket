@@ -83,7 +83,7 @@
     - Window: Stores the app state and manages switching between screens.
     - GUI screens (MainScreen, BuyerScreen, etc.): Handle the user interface and button clicks.
     
-- UML Diagram: **Image**
+- UML Diagram: ![UML Diagram](UML.png)
 ### Future Improvements
 - Clean up the UI to make it look more modern.
 - Add user login for different sellers and buyers.
