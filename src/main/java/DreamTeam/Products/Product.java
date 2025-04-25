@@ -14,6 +14,7 @@ public abstract class Product {
         this.quantity = quantity;
         this.companyName = companyName;
     }
+    public abstract Product cloneProduct();
 
     public double getPrice(){
         return this.price;
@@ -68,5 +69,25 @@ public abstract class Product {
             {"Description", this.description},
             {"Company Name", this.companyName}
         };
+    }
+    //Set to object to allow for integers.
+    public void setAttributes(Object[][] objects) throws IndexOutOfBoundsException {
+        for(Object[] object : objects){
+            if(String.valueOf(object[0]) == "Name"){
+                this.name = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Price"){
+                this.price = (Double)object[1];
+            }
+            if(String.valueOf(object[0]) == "Quantity"){
+                this.quantity = (Integer)object[1];
+            }
+            if(String.valueOf(object[0]) == "Description"){
+                this.description = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Company Name"){
+                this.companyName = String.valueOf(object[1]);
+            }
+        }
     }
 }

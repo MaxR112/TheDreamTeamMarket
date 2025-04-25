@@ -1,10 +1,8 @@
 package main.java.DreamTeam.Screen.ModifyItemScreen;
 
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,18 +33,9 @@ public class ModifyItemScreen extends JScrollPane {
         GridBagConstraints constraints = new GridBagConstraints();
         detailsPanel = new JPanel();
 
-        JPanel panel = initPanel(new JPanel());
+        JPanel panel = Window.initPanel(new JPanel());
         this.setPreferredSize(new Dimension(Window.getScreenWidth(), Window.getScreenHeight()));
         this.setViewportView(createBaseLayout(panel, window, constraints));
-    }
-    /**Init the panel with the layout set to a grid layout. */
-    JPanel initPanel(JPanel panel){
-        //Settings for the screen.
-        panel.setVisible(true);
-        panel.setLayout(new GridBagLayout());
-        //panel.setPreferredSize(new Dimension(Window.getScreenWidth(), panel.getPreferredSize().height));
-        panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        return panel;
     }
     JPanel createBaseLayout(JPanel panel, Window window, GridBagConstraints constraints){
         //Properties for all elements
@@ -165,7 +154,7 @@ public class ModifyItemScreen extends JScrollPane {
     }
     public GridBagConstraints ShowDetailsPanel(Window window, JPanel panel, JComboBox<String> dropdown, GridBagConstraints constraints){
         panel.remove(detailsPanel);
-        detailsPanel = initPanel(new JPanel());
+        detailsPanel = Window.initPanel(new JPanel());
         detailsPanel = ModifyDetails.createLayout(detailsPanel, window, constraints, productIndex);
         //Jank to fix layout.
         constraints.gridy = 3;

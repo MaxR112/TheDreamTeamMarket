@@ -11,6 +11,11 @@ public class Clothing extends Product{
         this.clothingType = clothingType;
         this.clothingColor = clothingColor;
     }
+    
+    @Override
+    public Product cloneProduct(){
+        return new Clothing(this.name, this.price, this.quantity, this.description, this.companyName, this.size, this.clothingType, this.clothingColor);
+    }
 
     public String getSize(){
         return this.size;
@@ -53,4 +58,34 @@ public class Clothing extends Product{
             {"Color", this.clothingColor}
         };
     }
+    @Override
+    public void setAttributes(Object[][] objects){
+        for(Object[] object : objects){
+            if(String.valueOf(object[0]) == "Name"){
+                this.name = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Price"){
+                this.price = (Double)object[1];
+            }
+            if(String.valueOf(object[0]) == "Quantity"){
+                this.quantity = (Integer)object[1];
+            }
+            if(String.valueOf(object[0]) == "Description"){
+                this.description = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Company Name"){
+                this.companyName = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Size"){
+                this.size = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Type"){
+                this.clothingType = String.valueOf(object[1]);
+            }
+            if(String.valueOf(object[0]) == "Color"){
+                this.clothingColor = String.valueOf(object[1]);
+            }
+        }
+    }
+
 }

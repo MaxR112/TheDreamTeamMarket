@@ -18,11 +18,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import main.java.DreamTeam.Products.Product;
-import main.java.DreamTeam.Screen.AddItemScreen.ChangeItem;
+import main.java.DreamTeam.Screen.Assets.ChangeItem;
 import main.java.DreamTeam.Screen.Assets.ResetConstraints;
 import main.java.DreamTeam.Screen.Assets.Window;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
 
+//TODO: unDRY this code.
 public class ModifyDetails{
     //This is stored as a private static variable for when the items are added eventually (this is to fix forcing pressing enter)
     private static JTextField nameTextbox;

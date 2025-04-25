@@ -1,10 +1,13 @@
 package main.java.DreamTeam.Screen.Assets;
 
+import java.awt.ComponentOrientation;
+import java.awt.GridBagLayout;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import main.java.DreamTeam.mainMarket.productCart;
 import main.java.DreamTeam.mainMarket.productCatalog;
-
 /**
     The window that manages screen operations along with holding values that persist until operation close, like the catalog and cart. 
 */
@@ -47,5 +50,14 @@ public class Window extends JFrame{
     }
     public static void setCart(productCart cart){
         Window.cart = cart;
+    }
+    /**Init the panel with the layout set to a grid layout. */
+    public static JPanel initPanel(JPanel panel){
+        //Settings for the screen.
+        panel.setVisible(true);
+        panel.setLayout(new GridBagLayout());
+        //panel.setPreferredSize(new Dimension(Window.getScreenWidth(), panel.getPreferredSize().height));
+        panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        return panel;
     }
 }

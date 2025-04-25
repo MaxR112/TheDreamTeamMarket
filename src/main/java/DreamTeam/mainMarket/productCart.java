@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import main.java.DreamTeam.Products.Product;
 public class productCart {
 
-    private ArrayList<Product> cartList;
+    public ArrayList<Product> cartList;
     private productCatalog catalog;
 
     public productCart(productCatalog catalog) {
@@ -31,16 +31,10 @@ public class productCart {
         }
 
         if (catalogProduct.getQuantity() >= 1) {
-            Product productCopy = new Product(
-                    catalogProduct.getPrice(),
-                    catalogProduct.getDescription(),
-                    catalogProduct.getName(),
-                    1,
-                    catalogProduct.getCompany()
-            ) {
-            };
-            cartList.add(productCopy);
-            System.out.println("Added to cart: " + productCopy.getName());
+            Product product = catalogProduct.cloneProduct();
+            product.setQuantity(1);
+            cartList.add(product);
+            System.out.println("Added to cart: " + catalogProduct.getName());
             return true;
         } else {
             throw new Exception("Out of stock: " + catalogProduct.getName());
