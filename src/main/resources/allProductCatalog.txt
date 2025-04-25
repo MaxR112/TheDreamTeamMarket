@@ -1,4 +1,4 @@
-Electronics, 30 Inch Smart TV, 999.0, 5, Amazing smart TV!, Samsung, 200 Watts, 25 pounds, Silver
+Electronics, 30 Inch Smart TV, 999.0, 3, Amazing smart TV!, Samsung, 200 Watts, 25 pounds, Silver
 Furniture, Marble Cabinet, 899.99, 50, Luxurious marble cabinet!, Kitchen & More!, Marble, 18 pounds, White
 Clothing, Aqua-Man Shirt, 19.99, 6, Aqua-Man superhero shirt!, Super Shirts, Large, T-Shirt, Blue
 Furniture, Wooden Table, 1599.99, 25, Sturdy wooden table!, Table Emporium, Wood, 60lb, Brown
