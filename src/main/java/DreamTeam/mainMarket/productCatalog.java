@@ -1,6 +1,8 @@
 package main.java.DreamTeam.mainMarket;
 
 import java.util.ArrayList;
+import main.java.DreamTeam.Exceptions.CouldNotUpdateQuantityException;
+import main.java.DreamTeam.Exceptions.ProductNotFoundException;
 import main.java.DreamTeam.Products.Product;
 
 public class productCatalog {
@@ -35,7 +37,7 @@ public class productCatalog {
         }
 
         if (filtered.isEmpty()) {
-            throw new Exception("No products found in category: " + productType);
+            throw new ProductNotFoundException("No products found in category: " + productType);
         }
         return filtered;
     }
@@ -45,7 +47,7 @@ public class productCatalog {
             Product product = getProductByName(name);
             return product.getPrice();
         } catch (Exception e){
-            throw new Exception("Product not found");
+            throw new ProductNotFoundException("Product not found");
         }
     }
 
@@ -56,7 +58,7 @@ public class productCatalog {
                 return product;
             }
         }
-        throw new Exception("Product not found with name: " + name);
+        throw new ProductNotFoundException("Product not found with name: " + name);
     }
 
     public boolean removeProductQuantity(String name, int quantityToSubtract) throws Exception{
@@ -69,12 +71,12 @@ public class productCatalog {
                             + ": " + currentQty + " -> " + product.getQuantity());
                     return true;
                 } else {
-                    throw new Exception("Insufficient quantity for " + product.getName()
+                    throw new CouldNotUpdateQuantityException("Insufficient quantity for " + product.getName()
                             + ". Available: " + currentQty + ", Requested: " + quantityToSubtract);
                 }
             }
         }
-        throw new Exception("Product with name " + name + " not found.");
+        throw new ProductNotFoundException("Product not found: " + name);
     }
 
     public void addProduct(Product product) throws Exception{
@@ -96,7 +98,7 @@ public class productCatalog {
                 return true;
             }
         }
-        throw new Exception("Could not find product to remove: " + name);
+        throw new ProductNotFoundException("Could not find product to remove: " + name);
     }
 
     public boolean updateProduct(String name, Product updatedProduct) throws Exception{
@@ -107,7 +109,7 @@ public class productCatalog {
                 return true;
             }
         }
-        throw new Exception("No product found with name: " + name + " to update.");
+        throw new ProductNotFoundException("No product found with name: " + name + " to update.");
 
     }
 

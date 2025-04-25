@@ -1,6 +1,7 @@
 package main.java.DreamTeam.mainMarket;
 import java.util.ArrayList;
-
+import main.java.DreamTeam.Exceptions.CouldNotUpdateQuantityException;
+import main.java.DreamTeam.Exceptions.ProductNotFoundException;
 import main.java.DreamTeam.Products.Product;
 public class productCart {
 
@@ -15,7 +16,7 @@ public class productCart {
     public boolean addProduct(String name) throws Exception{
         Product catalogProduct = catalog.getProductByName(name);
         if (catalogProduct == null) {
-            throw new Exception("Product not found in catalog.");
+            throw new ProductNotFoundException("Product not found.");
         }
 
         for (Product cartProduct : cartList) {
@@ -25,7 +26,7 @@ public class productCart {
                     System.out.println("Increased quantity in cart: " + cartProduct.getName());
                     return true;
                 } else {
-                    throw new Exception("Not enough stock for: " + catalogProduct.getName());
+                    throw new CouldNotUpdateQuantityException("Not enough stock for: " + catalogProduct.getName());
                 }
             }
         }
@@ -37,7 +38,7 @@ public class productCart {
             System.out.println("Added to cart: " + catalogProduct.getName());
             return true;
         } else {
-            throw new Exception("Out of stock: " + catalogProduct.getName());
+            throw new CouldNotUpdateQuantityException("Out of stock: " + catalogProduct.getName());
         }
     }
 
@@ -49,7 +50,7 @@ public class productCart {
                 return;
             }
         }
-        throw new Exception("Product not found in cart: " + name);
+        throw new ProductNotFoundException("Product not found in cart: " + name);
     }
 
     public void updateQuantityOfItemInCart(String name, int newQuantity) throws Exception{
@@ -57,7 +58,7 @@ public class productCart {
             if (product.getName().equalsIgnoreCase(name) && product.getQuantity() != newQuantity && catalog.getProductByName(name).getQuantity() >= newQuantity){
                 product.setQuantity(newQuantity);
             } else {
-                throw new Exception("Could not update quantity.");
+                throw new CouldNotUpdateQuantityException("Could not update quantity.");
             }
         }
     }
