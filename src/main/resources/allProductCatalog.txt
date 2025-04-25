@@ -1,4 +1,4 @@
-Electronics, Smart TV, 999.0, 5, This is a tv, Samsung, null, null, null
-Furniture, Marble Cabinet, 1999.0, 50, This is a cabinet, CabinetStories, null, null, null
-Clothing, T-Shirt, 599.0, 1, Lorem ipsum dolor sit amet consectetur adipiscing elit. Ex sapien vitae pellentesque sem placerat in id. Pretium tellus duis convallis tempus leo eu aenean. Urna tempor pulvinar vivamus fringilla lacus nec metus. Iaculis massa nisl malesuada lacinia integer nunc posuere. Semper vel class aptent taciti sociosqu ad litora. Conubia nostra inceptos himenaeos orci varius natoque penatibus. Dis parturient montes nascetur ridiculus mus donec rhoncus. Nulla molestie mattis scelerisque maximus eget fermentum odio. Purus est efficitur laoreet mauris pharetra vestibulum fusce., InsertT-Shirt, null, null, null
-Furniture, Wooden Table, 1599.99, 25, insert description here, DreamTeam, Wood, 60lb, Brown
+Electronics, 30 Inch Smart TV, 999.0, 5, Amazing smart TV!, Samsung, 200 Watts, 25 pounds, Silver
+Furniture, Marble Cabinet, 899.99, 50, Luxurious marble cabinet!, Kitchen & More!, Marble, 18 pounds, White
+Clothing, Aqua-Man Shirt, 19.99, 6, Aqua-Man superhero shirt!, Super Shirts, Large, T-Shirt, Blue
+Furniture, Wooden Table, 1599.99, 25, Sturdy wooden table!, Table Emporium, Wood, 60lb, Brown
