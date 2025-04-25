@@ -4,8 +4,8 @@
 - The Dream Team Marketplace
 ### Developers
 - Max Raymond
-- Bao Do
 - Gabe Kouki
+- Bao Do
 ### Class
 - CS-210, Professor Buvaneshwaran T
 ### Submission Date
