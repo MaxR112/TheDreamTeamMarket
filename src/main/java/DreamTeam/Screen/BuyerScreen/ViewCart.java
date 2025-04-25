@@ -99,7 +99,7 @@ public class ViewCart extends JScrollPane{
     }
 
     GridBagConstraints createBackButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
-        JButton addButton = new JButton("Buy Items");
+        JButton addButton = new JButton("View Catalog");
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
