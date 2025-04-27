@@ -25,6 +25,7 @@
     - The language used for this project is Java.
     - We used two libraries in the development of our project (besides basic java libraries), Java Swing and Java AWT.
         - These were used for the GUI development.
+
 ### Instalation and Setup
 - To run our program just follow these simple steps.
     - Open the [Github Repository](https://www.github.com/maxr112/thedreamteammarket)
@@ -33,6 +34,7 @@
     - Click run!
 
 - This program uses text based file storage which allows for all of the changes made within the program to carry over to future instances.
+
 ### Features
 - GUI functionality
     - Our app uses java swing and AWT to create an easy to use GUI. All interactions in the GUI are done through buttons, dropdowns, and entry fields. This makes our app easy to use and navigate.
@@ -65,14 +67,14 @@
     - You can add, remove, update quantities, and check out.
     - It also calculates the total cost automatically.
 
-- Driver:
+- Driver
     - Loads the product catalog from the file and kicks off the app.
     - It shows the main screen where you choose to log in as a buyer or seller
 
 
 ### SOLID Principles
    - Single Responsibility Principle
-     - Each class has a clear and singular purpose. ProductCatalog manages products, ProductCart manages the cart, fileReader handles file loading.
+     - Each class has a clear and singular purpose. productCatalog manages products, productCart manages the cart, fileReader handles file reading.
      
    - Open/Closed Principle
       - Product classes are designed to be extended like, Electronics, Clothing, Furniture without modifying the base Product class.
@@ -85,8 +87,6 @@
 
    - Dependency Inversion Principle
       - High-level modules like the GUI screens such as BuyerScreen, SellerScreen depend on abstractions like Product, ProductCatalog, not low-level file storage implementations.
- 
-
 
 ### Design Patterns
  - Our project uses several classic object-oriented design patterns to keep the code organized, scalable, and easy to maintain
@@ -110,6 +110,7 @@
   - Cart Actions (Add, Remove, Update, Checkout)
   - User actions like adding to cart, removing items, or checking out are all handled cleanly and could be expanded for undo/redo support later.
   - Organizes user actions into clear, reusable commands, making the app more flexible.
+
 ### Architecture Design
 - Overview
     - This application uses a Layered Architecture, which is a design pattern that organizes code into distinct layers based on their functionality.
@@ -139,15 +140,32 @@
    - Abstraction
       - Buyers and sellers interact with high-level GUI elements without worrying about underlying file operations.
 
-- UML Diagram: ![UML Diagram](UML.png)
+### Exceptions
+   - Our program uses two custom exceptions called CouldNotUpdateQuantityException and ProductNotFoundException.
+      - These exceptions are responsible for telling us if a products quantity was unable to be updated or if a product was unable to be found using its name.
+      - These exceptions were helpful when the seller or buyer was trying to update the quantity of an item or when we were trying to find a item to add to a cart/catalog.
+   - We also used built in Java Exceptions such as IOExceptions for when we are handling files.
+
+### Performance and Scalibility
+   - We believe that our program has fairly good performance for what it is.
+   - One thing that we think could increase scalbility of our program is to implement an actual database instead of using file readers and writers.
+   - Another thing about our performance is that Java Swing is not thread safe which could cause issues.
+
+### UML Diagram
+![UML Diagram](UML.png)
+
+### Sequence Diagram: Seller Adding Product
+![Sequence Diagram](Sequence.png)
+
 ### Future Improvements
 - Clean up the UI to make it look more modern.
 - Add user login for different sellers and buyers.
 - Switch from file storage to a real database.
 - Let users upload product images and search by filters.
-- Add a confirmation step before checking out.
+
 ### Conclusion
 - The Dream Team Marketplace is a Java Swing app that gives users a simple way to buy and sell items. It follows object-oriented design, saves all your data in a file, and has separate sections for buyers and sellers. It works great for a basic marketplace, and there's a lot of room to build on it with features like login systems and better visuals.
+
 ### References
 - [Swing](https://docs.oracle.com/javase/8/docs/api/index.html?javax/swing/package-summary.html)
 - [AWT](https://docs.oracle.com/javase/8/docs/api/java/awt/package-frame.html)
