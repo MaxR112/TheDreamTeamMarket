@@ -18,7 +18,7 @@ public class fileWriter implements Files{
         this.productFile = new File(this.filePath);
     }
 
-    public void writeProductsToFile(){
+    public void writeProductsToFile() throws IOException{
         checkForFileAndCreateIfNotPresent();
         try{
             FileWriter writer = new FileWriter(filePath);
@@ -27,7 +27,7 @@ public class fileWriter implements Files{
             }
             writer.close();
         } catch (IOException e){
-            System.out.println("File error " + e);
+            throw new IOException();
         }
 }
 

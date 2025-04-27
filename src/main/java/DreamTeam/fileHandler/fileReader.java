@@ -20,7 +20,7 @@ public class fileReader implements Files{
         this.productFile = new File(this.filePath);
     }
 
-    public static ArrayList<Product> readAllProductCatalogAndSaveToArray() {
+    public static ArrayList<Product> readAllProductCatalogAndSaveToArray() throws IOException{
         ArrayList<Product> productArray;
 
         fileReader pr = new fileReader("allProductCatalog.txt");
@@ -30,7 +30,7 @@ public class fileReader implements Files{
         return productArray;
     }
 
-    public void readFileAndStoreInList(){
+    public void readFileAndStoreInList() throws IOException{
         checkForFileAndCreateIfNotPresent();
         try {
             Scanner reader = new Scanner(new File(filePath));
@@ -54,8 +54,8 @@ public class fileReader implements Files{
                 }
             }
             reader.close();
-        } catch (Exception e) {
-            System.out.println("File error: " + e);
+        } catch (IOException e) {
+            throw new IOException();
         }
     }
 
