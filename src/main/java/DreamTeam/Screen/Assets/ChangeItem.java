@@ -1,5 +1,6 @@
 package main.java.DreamTeam.Screen.Assets;
 
+import java.io.IOException;
 import main.java.DreamTeam.Products.Clothing;
 import main.java.DreamTeam.Products.Electronics;
 import main.java.DreamTeam.Products.Furniture;
@@ -46,7 +47,11 @@ public class ChangeItem {
     public void writeCatalogFile(){
         //TODO: don't do it on this function.
         fileWriter writer = new fileWriter(Window.getCatalog().allProducts, "allProductCatalog.txt");
-        writer.writeProductsToFile();
+        try {
+            writer.writeProductsToFile();
+        } catch (IOException e) {
+            System.out.println("File error.");
+        }
     }
     public Product getProduct(){
         return product;
