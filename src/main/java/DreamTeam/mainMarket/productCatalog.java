@@ -8,7 +8,7 @@ import main.java.DreamTeam.Products.Product;
 public class productCatalog {
 
     public ArrayList<Product> allProducts;
-    
+
     public productCatalog(ArrayList<Product> productList) {
         this.allProducts = new ArrayList<>(productList);
         System.out.println("Catalog has been set with " + productList.size() + " products.");
@@ -26,7 +26,7 @@ public class productCatalog {
         }
     }
 
-    public ArrayList<Product> displayByProductType(String productType) throws Exception{
+    public ArrayList<Product> displayByProductType(String productType) throws Exception {
         ArrayList<Product> filtered = new ArrayList<>();
         System.out.println("\n--- Products filtered by type: " + productType + " ---");
         for (Product product : allProducts) {
@@ -42,16 +42,16 @@ public class productCatalog {
         return filtered;
     }
 
-    public double getProductCost(String name) throws Exception{
-        try{
+    public double getProductCost(String name) throws Exception {
+        try {
             Product product = getProductByName(name);
             return product.getPrice();
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new ProductNotFoundException("Product not found");
         }
     }
 
-    public Product getProductByName(String name) throws Exception{
+    public Product getProductByName(String name) throws Exception {
         for (Product product : allProducts) {
             if (product.getName().equalsIgnoreCase(name)) {
                 System.out.println("Found product: " + product.getName());
@@ -61,7 +61,7 @@ public class productCatalog {
         throw new ProductNotFoundException("Product not found with name: " + name);
     }
 
-    public boolean removeProductQuantity(String name, int quantityToSubtract) throws Exception{
+    public boolean removeProductQuantity(String name, int quantityToSubtract) throws Exception {
         for (Product product : allProducts) {
             if (product.getName().equals(name)) {
                 int currentQty = product.getQuantity();
@@ -79,9 +79,9 @@ public class productCatalog {
         throw new ProductNotFoundException("Product not found: " + name);
     }
 
-    public void addProduct(Product product) throws Exception{
+    public void addProduct(Product product) throws Exception {
         for (Product productAlreadyInList : allProducts) {
-            if (productAlreadyInList.getName().equals(product.getName())){
+            if (productAlreadyInList.getName().equals(product.getName())) {
                 throw new Exception("Product name " + product.getName() + " already exists!");
             }
         }
@@ -90,7 +90,7 @@ public class productCatalog {
                 + " (Type: " + product.getClass().getSimpleName() + ")");
     }
 
-    public boolean removeProduct(String name) throws Exception{
+    public boolean removeProduct(String name) throws Exception {
         for (Product product : allProducts) {
             if (product.getName().equalsIgnoreCase(name)) {
                 allProducts.remove(product);
@@ -101,7 +101,7 @@ public class productCatalog {
         throw new ProductNotFoundException("Could not find product to remove: " + name);
     }
 
-    public boolean updateProduct(String name, Product updatedProduct) throws Exception{
+    public boolean updateProduct(String name, Product updatedProduct) throws Exception {
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getName().equalsIgnoreCase(name)) {
                 allProducts.set(i, updatedProduct);

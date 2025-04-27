@@ -68,14 +68,57 @@
 - Driver:
     - Loads the product catalog from the file and kicks off the app.
     - It shows the main screen where you choose to log in as a buyer or seller
+
+
+### SOLID Principles
+   - Single Responsibility Principle
+     - Each class has a clear and singular purpose. ProductCatalog manages products, ProductCart manages the cart, fileReader handles file loading.
+     
+   - Open/Closed Principle
+      - Product classes are designed to be extended like, Electronics, Clothing, Furniture without modifying the base Product class.
+
+   - Liskov Substitution Principle
+      - Subclasses like Electronics, Clothing, and Furniture can be used wherever a Product object is expected without breaking functionality.
+
+   - Interface Segregation Principle
+      - We organize product behavior cleanly; specific features are handled through subclassing rather than forcing a bloated Product class.
+
+   - Dependency Inversion Principle
+      - High-level modules like the GUI screens such as BuyerScreen, SellerScreen depend on abstractions like Product, ProductCatalog, not low-level file storage implementations.
+ 
+
+
+### Design Patterns
+ - Our project uses several classic object-oriented design patterns to keep the code organized, scalable, and easy to maintain
+
+#### Factory Pattern
+  -  Product Creation of Electronics, Clothing, Furniture
+  -  We use a base Product class and extend it into specialized product types. This makes it easy to add new product types without touching existing code. 
+  -  Supports the Open/Closed Principle — open for extension, closed for modification.
+
+#### Singleton Pattern
+  - Catalog Management
+  - There is only one catalog instance that tracks all products throughout the program.
+  - Ensures data consistency and provides a single global access point to the product list.
+
+#### Observer Pattern
+  - GUI Cart and Product Updates
+  - When buyers add/remove items from the cart or sellers update the catalog, the GUI instantly reflects those changes.
+  - Keeps the user interface in sync with backend data without tightly coupling the two.
+
+#### Command Pattern
+  - Cart Actions (Add, Remove, Update, Checkout)
+  - User actions like adding to cart, removing items, or checking out are all handled cleanly and could be expanded for undo/redo support later.
+  - Organizes user actions into clear, reusable commands, making the app more flexible.
 ### Architecture Design
-- Overview:
+- Overview
+    - This application uses a Layered Architecture, which is a design pattern that organizes code into distinct layers based on their functionality.
     - The app starts with Driver.java, which reads in product data and sends it to the Window class. This class handles switching screens and stores shared stuff like the catalog and cart.
     - From the MainScreen, users choose between SellerScreen and BuyerScreen.
     - Sellers use screens like AddItemScreen and ModifyItemScreen to manage their listings.
     - Buyers use BuyerScreen to browse and buy.
 
-- Class Breakdown:
+- Class Breakdown
     - Product and subclasses: Define what each item is and what info it stores.
     - productCatalog: Holds and manages the list of all items.
     - productCart: Holds buyer selections and handles cart actions.
@@ -83,6 +126,19 @@
     - Window: Stores the app state and manages switching between screens.
     - GUI screens (MainScreen, BuyerScreen, etc.): Handle the user interface and button clicks.
     
+### OOP 
+   - Encapsulation
+      - All product data such as name, price, quantity is private and accessed through getter/setter methods.
+
+   - Inheritance
+      - Electronics, Clothing, and Furniture extend the Product base class.
+
+   - Polymorphism
+      - Methods like toString() and category-specific behaviors differ based on the product subclass.
+
+   - Abstraction
+      - Buyers and sellers interact with high-level GUI elements without worrying about underlying file operations.
+
 - UML Diagram: ![UML Diagram](UML.png)
 ### Future Improvements
 - Clean up the UI to make it look more modern.
