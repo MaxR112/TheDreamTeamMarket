@@ -51,12 +51,11 @@ public class Window extends JFrame{
     public static void setCart(productCart cart){
         Window.cart = cart;
     }
-    /**Init the panel with the layout set to a grid layout. */
+    /**Shared method with other screens that inits the panel with the layout set to a grid layout. */
     public static JPanel initPanel(JPanel panel){
         //Settings for the screen.
         panel.setVisible(true);
         panel.setLayout(new GridBagLayout());
-        //panel.setPreferredSize(new Dimension(Window.getScreenWidth(), panel.getPreferredSize().height));
         panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         return panel;
     }
