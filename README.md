@@ -30,7 +30,7 @@
 - To run our program just follow these simple steps.
     - Open the [Github Repository](https://www.github.com/maxr112/thedreamteammarket)
     - Download the files or clone the repository
-    - Open the repository folder in whatever IDE you please, making sure to have Java installed.
+    - Open the repository folder in whatever IDE you please, making sure to have **Java 14 or up** installed. *Using a version lower than Java 14 will not work as this code includes arrows in case statements!!!*
     - Click run!
 
 - This program uses text based file storage which allows for all of the changes made within the program to carry over to future instances.
