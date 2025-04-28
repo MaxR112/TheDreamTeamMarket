@@ -7,12 +7,14 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.java.DreamTeam.Exceptions.ProductNotFoundException;
 import main.java.DreamTeam.Products.Product;
 import main.java.DreamTeam.Screen.Assets.ChangeItem;
 import main.java.DreamTeam.Screen.Assets.ResetConstraints;
@@ -95,7 +97,7 @@ public class ModifyDetails{
             public void actionPerformed(ActionEvent e) {
                 //Read all the values of GUI elements just before addition.
                 Product product = Window.getCatalog().allProducts.get(productIndex);
-                item = new ChangeItem(product.getClass().getSimpleName());
+                item = new ChangeItem(product.getClass().getSimpleName(), product);
 
                 boolean isThrown = false;
                 productCatalog catalog = null;
@@ -110,21 +112,29 @@ public class ModifyDetails{
                     item.setProduct(ReadAttributes.readAttributeFields(item.getProduct(), otherTextField));
 
                     catalog = item.setItemAtCatalog();
+                    ChangeItem.writeCatalogFile();
+                }
+                catch(ProductNotFoundException ex){
+                    showMessageDialog(null, "The selected product to modify in the catalog does not exist!");
+                    System.out.println(ex);
+                    isThrown = true;
                 }
                 catch(NullPointerException ex){
                     showMessageDialog(null, "There are missing values, please fill them out!");
+                    System.out.println(ex);
                     isThrown = true;
                 }
                 catch(IllegalArgumentException ex){
                     showMessageDialog(null, "There are missing values, please fill them out!");
+                    System.out.println(ex);
                     isThrown = true;
                 }
-                catch(Exception ex){
-                    showMessageDialog(null, ex.getMessage());
+                catch(IOException ex){
+                    showMessageDialog(null, "Cannot modify the product because of file error!");
+                    System.out.println(ex);
                     isThrown = true;
                 }
                 if(!isThrown){
-                    item.writeCatalogFile();
                     System.out.println("Successfully modified product to the catalog, and saved to the file.");
 
                     window.setContentPane(new SellerScreen(window, catalog));
@@ -156,18 +166,24 @@ public class ModifyDetails{
                 boolean isThrown = false;
                 try{
                     Window.getCatalog().removeProduct(name);
-                    System.out.println("Successfully removed product from the catalog, and saved to the file.");
+                    ChangeItem.writeCatalogFile();
                 }
-                catch(Exception ex){
-                    showMessageDialog(null, ex.getMessage());
+                catch(ProductNotFoundException ex){
+                    showMessageDialog(null, "The selected product to remove in the catalog does not exist!");
+                    System.out.println(ex);
+                    isThrown = true;
+                }
+                catch(IOException ex){
+                    showMessageDialog(null, "Cannot remove the product because of file error!");
+                    System.out.println(ex);
                     isThrown = true;
                 }
                 //Don't switch screens when exception is thrown, don't write to catalog as well.
                 if(!isThrown){
+                    System.out.println("Successfully removed product from the catalog, and saved to the file.");
+
                     window.setContentPane(new SellerScreen(window, Window.getCatalog()));
                     window.validate();
-
-                    item.writeCatalogFile();
                 }
             }
         });

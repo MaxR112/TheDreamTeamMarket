@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import main.java.DreamTeam.Exceptions.ProductNotFoundException;
 import main.java.DreamTeam.Screen.Assets.ResetConstraints;
 import main.java.DreamTeam.Screen.Assets.Window;
 import main.java.DreamTeam.Screen.Panels.DisplayItem;
@@ -171,9 +172,10 @@ public class ViewCart extends JScrollPane{
                 try{
                     Window.getCart().removeProduct(productName);
                 }
-                catch(Exception ex){
+                catch(ProductNotFoundException ex){
                     isThrown = true;
-                    showMessageDialog(null, ex.getMessage());
+                    System.out.println(ex);
+                    showMessageDialog(null, "The selected product in the cart does not exist!");
                 }
 
                 //Prevent switching when exception is thrown so it stays in the same spot.

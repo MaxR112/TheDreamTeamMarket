@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import main.java.DreamTeam.Products.Product;
 import main.java.DreamTeam.Screen.Assets.ResetConstraints;
 
-//TODO: refactor this?
 public class DisplayAdditionalAttributes {
     /**
      * Displays the item info and its attributes.

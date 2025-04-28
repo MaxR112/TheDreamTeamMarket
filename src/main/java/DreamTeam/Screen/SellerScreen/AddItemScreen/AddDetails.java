@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -91,21 +92,24 @@ public class AddDetails{
                     item.setProduct(ReadAttributes.readAttributeFields(item.getProduct(), otherTextField));
 
                     catalog = item.addToCatalog();
+                    ChangeItem.writeCatalogFile();
                 }
                 catch(IllegalArgumentException ex){
                     showMessageDialog(null, "There are missing values, please fill them out!");
+                    System.out.println(ex);
                     isThrown = true;
                 }
                 catch(NullPointerException ex){
                     showMessageDialog(null, "There are missing values, please fill them out!");
+                    System.out.println(ex);
                     isThrown = true;
                 }
-                catch(Exception ex){
-                    showMessageDialog(null, ex.getMessage());
+                catch(IOException ex){
+                    showMessageDialog(null, "Cannot add the product because of file error!");
+                    System.out.println(ex);
                     isThrown = true;
                 }
                 if(!isThrown){
-                    item.writeCatalogFile();
                     System.out.println("Successfully added product to the catalog, and saved to the file.");
     
                     window.setContentPane(new SellerScreen(window, catalog));
