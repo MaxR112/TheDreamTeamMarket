@@ -16,35 +16,37 @@ import javax.swing.JPanel;
 import main.java.DreamTeam.Screen.Assets.ChangeItem;
 import main.java.DreamTeam.Screen.Assets.ResetConstraints;
 import main.java.DreamTeam.Screen.Assets.Window;
+import main.java.DreamTeam.mainMarket.productCart;
+import main.java.DreamTeam.mainMarket.productCatalog;
 
 public class Checkout extends JPanel {
     /**
      * Init the screen with certain properties.
     */
-    public Checkout(Window window) throws IllegalArgumentException{
+    public Checkout(Window window, productCatalog catalog, productCart cart) throws IllegalArgumentException{
         //Set the constraints of layout manager (automatic rescaling and such)
-        if(Window.getCart().getCountOfItemsInCart() == 0){
+        if(cart.getCountOfItemsInCart() == 0){
             throw new IllegalArgumentException("Cart count is too low for checkout.");
         }
         GridBagConstraints constraints = new GridBagConstraints();
         JPanel panel = Window.initPanel(this);
         panel.setPreferredSize(new Dimension(Window.getScreenWidth(), Window.getScreenHeight()));
-        createLayout(panel, window, constraints);
+        Layout(panel, window, constraints, catalog, cart);
     }
-    JPanel createLayout(JPanel panel, Window window, GridBagConstraints constraints){
+    JPanel Layout(JPanel panel, Window window, GridBagConstraints constraints, productCatalog catalog, productCart cart){
         //Use default constraints for element centering.
         //Draw elements
-        constraints = createScreenTitle(panel, constraints, 0, 0);
+        ScreenTitle(panel, constraints, 0, 0);
 
-        constraints = createCartCount(panel, constraints, 0, 1);
-        constraints = createCartTotalPrice(panel, constraints, 0, 2);
+        CartCount(panel, constraints, cart, 0, 1);
+        CartTotalPrice(panel, constraints, cart, 0, 2);
 
-        constraints = createPurchaseButton(window, panel, constraints, 0, 3);
-        constraints = createViewCartButton(window, panel, constraints, 0, 4);
-        constraints = createBackButton(window, panel, constraints, 0, 5);
+        PurchaseButton(window, panel, constraints, 0, 3);
+        ViewCartButton(window, panel, constraints, catalog, cart, 0, 4);
+        BackButton(window, panel, constraints, catalog, cart, 0, 5);
         return panel;
     }
-    GridBagConstraints createScreenTitle(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+    private static void ScreenTitle(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel screenTitle = new JLabel("Do you want to purchase those items?");
         screenTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
 
@@ -52,30 +54,27 @@ public class Checkout extends JPanel {
             constraints, gridX, gridY, new Insets(20, 0, 0, 0), 0, 20);
 
         panel.add(screenTitle, constraints);
-        return ResetConstraints.reset(constraints);
     }
-    GridBagConstraints createCartCount(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
-        JLabel screenTitle = new JLabel("Items in cart: " + Window.getCart().getCountOfItemsInCart());
+    private static void CartCount(JPanel panel, GridBagConstraints constraints, productCart cart, int gridX, int gridY){
+        JLabel screenTitle = new JLabel("Items in cart: " + cart.getCountOfItemsInCart());
         screenTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
         constraints = ResetConstraints.setConstraints(
             constraints, gridX, gridY, new Insets(5, 0, 0, 0), 0, 5);
 
         panel.add(screenTitle, constraints);
-        return ResetConstraints.reset(constraints);
     }
-    GridBagConstraints createCartTotalPrice(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
-        JLabel screenTitle = new JLabel("Total price: $" + String.format ("%.2f", Window.getCart().getTotalCost()));
+    private static void CartTotalPrice(JPanel panel, GridBagConstraints constraints, productCart cart, int gridX, int gridY){
+        JLabel screenTitle = new JLabel("Total price: $" + String.format ("%.2f", cart.getTotalCost()));
         screenTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
         constraints = ResetConstraints.setConstraints(
             constraints, gridX, gridY, new Insets(5, 0, 5, 0), 0, 5);
 
         panel.add(screenTitle, constraints);
-        return ResetConstraints.reset(constraints);
     }
 
-    GridBagConstraints createPurchaseButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+    private static void PurchaseButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JButton addButton = new JButton("Purchase");
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
@@ -93,16 +92,15 @@ public class Checkout extends JPanel {
                 //Prevent switching when exception is thrown so it stays in the same spot.
                 if(!isThrown){
                     if(cartCount <= 1){
-                        showMessageDialog(null, "Successfully purchased " + cartCount + " item for a total of $" + totalPrice + ".");
+                        showMessageDialog(null, "Successfully purchased " + cartCount + " item for a total of $" + String.format ("%.2f", totalPrice) + ".");
                     }
                     else{
-                        showMessageDialog(null, "Successfully purchased " + cartCount + " items for a total of $" + totalPrice + ".");
+                        showMessageDialog(null, "Successfully purchased " + cartCount + " items for a total of $" + String.format ("%.2f", totalPrice) + ".");
                     }
                     //TODO: don't do this (move writeCatalogFile somewhere else)
                     ChangeItem item = new ChangeItem("Electronics");
                     item.writeCatalogFile();
-                    //Very stupid way to update the value but it works.
-                    window.setContentPane(new BuyerScreen(window));
+                    window.setContentPane(new BuyerScreen(window, Window.getCatalog(), Window.getCart()));
                     window.validate();
                 }
             }
@@ -112,14 +110,13 @@ public class Checkout extends JPanel {
             constraints, gridX, gridY, new Insets(20, 0, 5, 0), 100, 30);
 
         panel.add(addButton, constraints);
-        return ResetConstraints.reset(constraints);
     }
-    GridBagConstraints createViewCartButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+    private static void ViewCartButton(Window window, JPanel panel, GridBagConstraints constraints, productCatalog catalog, productCart cart, int gridX, int gridY){
         JButton addButton = new JButton("View Cart");
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                window.setContentPane(new ViewCart(window));
+                window.setContentPane(new ViewCart(window, catalog, cart));
                 window.validate();
             }
         });
@@ -128,14 +125,13 @@ public class Checkout extends JPanel {
             constraints, gridX, gridY, new Insets(20, 0, 0, 0), 100, 30);
 
         panel.add(addButton, constraints);
-        return ResetConstraints.reset(constraints);
     }
-    GridBagConstraints createBackButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
+    private static void BackButton(Window window, JPanel panel, GridBagConstraints constraints, productCatalog catalog, productCart cart, int gridX, int gridY){
         JButton addButton = new JButton("Return to Buyer Panel");
         //Inline way (and non-DRY way) to listen to button inputs.
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                window.setContentPane(new BuyerScreen(window));
+                window.setContentPane(new BuyerScreen(window, catalog, cart));
                 window.validate();
             }
         });
@@ -144,6 +140,5 @@ public class Checkout extends JPanel {
             constraints, gridX, gridY, new Insets(20, 0, 0, 0), 100, 30);
 
         panel.add(addButton, constraints);
-        return ResetConstraints.reset(constraints);
     }
 }

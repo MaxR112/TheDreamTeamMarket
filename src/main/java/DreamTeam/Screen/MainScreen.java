@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.java.DreamTeam.Screen.Assets.ResetConstraints;
 import main.java.DreamTeam.Screen.Assets.Window;
 import main.java.DreamTeam.Screen.BuyerScreen.BuyerScreen;
 import main.java.DreamTeam.Screen.SellerScreen.SellerScreen;
@@ -27,77 +28,55 @@ public class MainScreen extends JPanel{
         GridBagConstraints constraints = new GridBagConstraints();
         JPanel panel = Window.initPanel(this);
         panel.setPreferredSize(new Dimension(Window.getScreenWidth(), Window.getScreenHeight()));
-        createLayout(window, panel, constraints);
+        Layout(window, panel, constraints);
     }
     /**Create the layout of the panel, while setting properties for each element inside a part of the grid. */
-    void createLayout(Window window, JPanel panel, GridBagConstraints constraints){
-        constraints = createLabel(panel, constraints);
+    private void Layout(Window window, JPanel panel, GridBagConstraints constraints){
+        constraints.fill = GridBagConstraints.NONE;
+        TitleLabel(panel, constraints, 0, 0);
 
-        constraints = createBuyerButton(window, panel, constraints);
-        constraints = createSellerButton(window, panel, constraints);
+        BuyerButton(window, panel, constraints, 0, 1);
+        SellerButton(window, panel, constraints, 0, 2);
     }
-    GridBagConstraints createLabel(JPanel panel, GridBagConstraints constraints){
+    private void TitleLabel(JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JLabel loginLabel = new JLabel("Login as Buyer or Seller?");
         loginLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 
-        //Set the position of the component relative to grid layout.
-        constraints.fill = GridBagConstraints.NONE;
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(20, 0, 20, 0);
-        //Set the size of the component
-        constraints.ipady = 40;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(20, 0, 20, 0), 0, 40);
 
         panel.add(loginLabel, constraints);
-        return constraints;
     }
-    GridBagConstraints createBuyerButton(Window window, JPanel panel, GridBagConstraints constraints){
+    private void BuyerButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JButton buyerButton = new JButton("Buyer");
         buyerButton.setFont(new Font("Tahoma", Font.BOLD, 30));
         //Inline way (and non-DRY way) to listen to button inputs.
         buyerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                window.setContentPane(new BuyerScreen(window));
+                window.setContentPane(new BuyerScreen(window, Window.getCatalog(), Window.getCart()));
                 window.validate();
             }
         });
 
-        //Set the position of the component relative to grid layout.
-        constraints.fill = GridBagConstraints.NONE;
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(20, 0, 20, 0);
-        //Set the size of the component
-        constraints.ipadx = 200;
-        constraints.ipady = 40;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(20, 0, 20, 0), 200, 40);
 
         panel.add(buyerButton, constraints);
-        return constraints;
     }
-    GridBagConstraints createSellerButton(Window window, JPanel panel, GridBagConstraints constraints){
+    private void SellerButton(Window window, JPanel panel, GridBagConstraints constraints, int gridX, int gridY){
         JButton sellerButton = new JButton("Seller");
         sellerButton.setFont(new Font("Tahoma", Font.BOLD, 30));
         //Inline way (and non-DRY way) to listen to button inputs.
         sellerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                window.setContentPane(new SellerScreen(window));
+                window.setContentPane(new SellerScreen(window, Window.getCatalog()));
                 window.validate();
             }
         });
 
-        //Set the position of the component relative to grid layout.
-        constraints.fill = GridBagConstraints.NONE;
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        //Set the position within the grid layout.
-        constraints.insets = new Insets(20, 0, 20, 0);
-        //Set the size of the component
-        constraints.ipadx = 200;
-        constraints.ipady = 40;
+        constraints = ResetConstraints.setConstraints(
+            constraints, gridX, gridY, new Insets(20, 0, 20, 0), 200, 40);
 
         panel.add(sellerButton, constraints);
-        return constraints;
     }
 }
