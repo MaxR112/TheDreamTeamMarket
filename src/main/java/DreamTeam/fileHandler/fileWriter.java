@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import main.java.DreamTeam.Products.Product;
 
 public class fileWriter implements Files{
@@ -32,16 +33,11 @@ public class fileWriter implements Files{
 }
 
     @Override
-    public void checkForFileAndCreateIfNotPresent() {
-        try {
-            if (productFile.createNewFile()){
-                System.out.println("Product file created: " + productFile.getName());
-            }
-        } catch (IOException e) {
-            System.out.println("File error " + e);
+    public void checkForFileAndCreateIfNotPresent() throws IOException {
+        if (productFile.createNewFile()){
+            System.out.println("Product file created: " + productFile.getName());
         }
     }
-
     
 
 }

@@ -12,7 +12,6 @@ public class ReadAttributes {
         product.setAttributes(attributes.toArray(new Object[attributes.size()][]));
         return product;
     }
-    //TODO: May violate dependency inversion
     private static ArrayList<Object[]> getUniqueAttributes(ArrayList<modifyAttributes> textFields) throws IllegalArgumentException{
         ArrayList<Object[]> attributes = new ArrayList<>();
         //Get string list to compare to

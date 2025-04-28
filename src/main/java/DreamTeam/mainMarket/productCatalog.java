@@ -1,6 +1,7 @@
 package main.java.DreamTeam.mainMarket;
 
 import java.util.ArrayList;
+
 import main.java.DreamTeam.Exceptions.CouldNotUpdateQuantityException;
 import main.java.DreamTeam.Exceptions.ProductNotFoundException;
 import main.java.DreamTeam.Products.Product;
@@ -26,7 +27,7 @@ public class productCatalog {
         }
     }
 
-    public ArrayList<Product> displayByProductType(String productType) throws Exception {
+    public ArrayList<Product> displayByProductType(String productType) throws ProductNotFoundException {
         ArrayList<Product> filtered = new ArrayList<>();
         System.out.println("\n--- Products filtered by type: " + productType + " ---");
         for (Product product : allProducts) {
@@ -42,16 +43,12 @@ public class productCatalog {
         return filtered;
     }
 
-    public double getProductCost(String name) throws Exception {
-        try {
-            Product product = getProductByName(name);
-            return product.getPrice();
-        } catch (Exception e) {
-            throw new ProductNotFoundException("Product not found");
-        }
+    public double getProductCost(String name) throws ProductNotFoundException {
+        Product product = getProductByName(name);
+        return product.getPrice();
     }
 
-    public Product getProductByName(String name) throws Exception {
+    public Product getProductByName(String name) throws ProductNotFoundException {
         for (Product product : allProducts) {
             if (product.getName().equalsIgnoreCase(name)) {
                 System.out.println("Found product: " + product.getName());
@@ -61,7 +58,7 @@ public class productCatalog {
         throw new ProductNotFoundException("Product not found with name: " + name);
     }
 
-    public boolean removeProductQuantity(String name, int quantityToSubtract) throws Exception {
+    public void removeProductQuantity(String name, int quantityToSubtract) throws CouldNotUpdateQuantityException, ProductNotFoundException {
         for (Product product : allProducts) {
             if (product.getName().equals(name)) {
                 int currentQty = product.getQuantity();
@@ -69,7 +66,7 @@ public class productCatalog {
                     product.setQuantity(currentQty - quantityToSubtract);
                     System.out.println("Updated quantity for " + product.getName()
                             + ": " + currentQty + " -> " + product.getQuantity());
-                    return true;
+                    return;
                 } else {
                     throw new CouldNotUpdateQuantityException("Insufficient quantity for " + product.getName()
                             + ". Available: " + currentQty + ", Requested: " + quantityToSubtract);
@@ -79,10 +76,10 @@ public class productCatalog {
         throw new ProductNotFoundException("Product not found: " + name);
     }
 
-    public void addProduct(Product product) throws Exception {
+    public void addProduct(Product product) throws IllegalArgumentException {
         for (Product productAlreadyInList : allProducts) {
             if (productAlreadyInList.getName().equals(product.getName())) {
-                throw new Exception("Product name " + product.getName() + " already exists!");
+                throw new IllegalArgumentException("Product name " + product.getName() + " already exists!");
             }
         }
         allProducts.add(product);
@@ -90,7 +87,7 @@ public class productCatalog {
                 + " (Type: " + product.getClass().getSimpleName() + ")");
     }
 
-    public boolean removeProduct(String name) throws Exception {
+    public boolean removeProduct(String name) throws ProductNotFoundException {
         for (Product product : allProducts) {
             if (product.getName().equalsIgnoreCase(name)) {
                 allProducts.remove(product);
@@ -101,7 +98,7 @@ public class productCatalog {
         throw new ProductNotFoundException("Could not find product to remove: " + name);
     }
 
-    public boolean updateProduct(String name, Product updatedProduct) throws Exception {
+    public boolean updateProduct(String name, Product updatedProduct) throws ProductNotFoundException {
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getName().equalsIgnoreCase(name)) {
                 allProducts.set(i, updatedProduct);

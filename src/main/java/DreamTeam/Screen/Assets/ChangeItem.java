@@ -2,6 +2,7 @@ package main.java.DreamTeam.Screen.Assets;
 
 import java.io.IOException;
 
+import main.java.DreamTeam.Exceptions.ProductNotFoundException;
 import main.java.DreamTeam.Products.Clothing;
 import main.java.DreamTeam.Products.Electronics;
 import main.java.DreamTeam.Products.Furniture;
@@ -12,9 +13,22 @@ import main.java.DreamTeam.mainMarket.productCatalog;
 public class ChangeItem {
     private String itemType;
     private Product product;
+    private Product baseProduct;
 
+    /**
+     * Constructor for creating items.
+     * @param itemType
+     */
     public ChangeItem(String itemType){
         this.itemType = itemType;
+    }
+    /**
+     * Constructor for modifying items
+     * @param itemType
+     */
+    public ChangeItem(String itemType, Product baseProduct){
+        this.itemType = itemType;
+        this.baseProduct = baseProduct;
     }
     public void createProduct() throws IllegalArgumentException{
         switch(itemType){
@@ -75,7 +89,7 @@ public class ChangeItem {
      * Adds the product to the static Window catalog.
      * @return the catalog in Window.
      */
-    public productCatalog addToCatalog() throws Exception{
+    public productCatalog addToCatalog() throws IllegalArgumentException{
         Window.getCatalog().addProduct(product);
         return Window.getCatalog();
     }
@@ -83,22 +97,17 @@ public class ChangeItem {
      * Modifies the product to the static Window catalog.
      * @return the catalog in Window.
      */
-    public productCatalog setItemAtCatalog() throws Exception{
-        Window.getCatalog().updateProduct(product.getName(), product);
+    public productCatalog setItemAtCatalog() throws ProductNotFoundException{
+        Window.getCatalog().updateProduct(baseProduct.getName(), product);
         return Window.getCatalog();
     }
-    public productCatalog removeItemAtCatalog() throws Exception{
-        Window.getCatalog().removeProduct(product.getName());
+    public productCatalog removeItemAtCatalog() throws ProductNotFoundException{
+        Window.getCatalog().removeProduct(baseProduct.getName());
         return Window.getCatalog();
     }
-    public void writeCatalogFile(){
-        //TODO: don't do it on this function.
+    public static void writeCatalogFile() throws IOException{
         fileWriter writer = new fileWriter(Window.getCatalog().allProducts, "allProductCatalog.txt");
-        try {
-            writer.writeProductsToFile();
-        } catch (IOException e) {
-            System.out.println("File error.");
-        }
+        writer.writeProductsToFile();
     }
     public Product getProduct(){
         return product;

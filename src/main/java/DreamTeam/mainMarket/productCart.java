@@ -1,5 +1,6 @@
 package main.java.DreamTeam.mainMarket;
 import java.util.ArrayList;
+
 import main.java.DreamTeam.Exceptions.CouldNotUpdateQuantityException;
 import main.java.DreamTeam.Exceptions.ProductNotFoundException;
 import main.java.DreamTeam.Products.Product;
@@ -13,7 +14,7 @@ public class productCart {
         this.cartList = new ArrayList<>();
     }
 
-    public boolean addProduct(String name) throws Exception{
+    public boolean addProduct(String name) throws ProductNotFoundException, CouldNotUpdateQuantityException{
         Product catalogProduct = catalog.getProductByName(name);
         if (catalogProduct == null) {
             throw new ProductNotFoundException("Product not found.");
@@ -42,7 +43,7 @@ public class productCart {
         }
     }
 
-    public void removeProduct(String name) throws Exception {
+    public void removeProduct(String name) throws ProductNotFoundException {
         for (int i = 0; i < cartList.size(); i++) {
             if (cartList.get(i).getName().equalsIgnoreCase(name)) {
                 cartList.remove(i);
@@ -53,7 +54,7 @@ public class productCart {
         throw new ProductNotFoundException("Product not found in cart: " + name);
     }
 
-    public void updateQuantityOfItemInCart(String name, int newQuantity) throws Exception{
+    public void updateQuantityOfItemInCart(String name, int newQuantity) throws CouldNotUpdateQuantityException, ProductNotFoundException {
         for (Product product : cartList){
             if (product.getName().equalsIgnoreCase(name) && product.getQuantity() != newQuantity && catalog.getProductByName(name).getQuantity() >= newQuantity){
                 product.setQuantity(newQuantity);
@@ -63,17 +64,14 @@ public class productCart {
         }
     }
 
-    public void checkout()throws Exception {
+    public void checkout() throws CouldNotUpdateQuantityException, ProductNotFoundException {
         if (cartList.isEmpty()) {
             System.out.println("Cart is empty. Nothing to checkout.");
             return;
         }
 
         for (Product cartProduct : cartList){
-            boolean success = catalog.removeProductQuantity(cartProduct.getName(), cartProduct.getQuantity());
-            if (!success) {
-                throw new Exception("Could not complete checkout for: " + cartProduct.getName());
-            }
+            catalog.removeProductQuantity(cartProduct.getName(), cartProduct.getQuantity());
         }
 
         cartList.clear();

@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import main.java.DreamTeam.Exceptions.CouldNotUpdateQuantityException;
+import main.java.DreamTeam.Exceptions.ProductNotFoundException;
 import main.java.DreamTeam.Screen.MainScreen;
 import main.java.DreamTeam.Screen.Assets.ResetConstraints;
 import main.java.DreamTeam.Screen.Assets.Window;
@@ -186,9 +188,15 @@ public class BuyerScreen extends JScrollPane{
                 try{
                     Window.getCart().addProduct(productName);
                 }
-                catch(Exception ex){
+                catch(ProductNotFoundException ex){
                     isThrown = true;
-                    showMessageDialog(null, ex.getMessage());
+                    System.out.println(ex);
+                    showMessageDialog(null, "The selected product for this catalog does not exist!");
+                }
+                catch(CouldNotUpdateQuantityException ex){
+                    isThrown = true;
+                    System.out.println(ex);
+                    showMessageDialog(null, "There are too few items to add to your cart for this product!");
                 }
 
                 //Prevent switching when exception is thrown so it stays in the same spot.

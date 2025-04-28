@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import main.java.DreamTeam.Products.Clothing;
 import main.java.DreamTeam.Products.Electronics;
 import main.java.DreamTeam.Products.Furniture;
@@ -32,31 +33,28 @@ public class fileReader implements Files{
 
     public void readFileAndStoreInList() throws IOException{
         checkForFileAndCreateIfNotPresent();
-        try {
-            Scanner reader = new Scanner(new File(filePath));
-            while (reader.hasNextLine()){
-                String line = reader.nextLine();
-                String[] individualLineValues = line.split(", ");
-                switch (individualLineValues[0]) {
-                    case "Electronics" -> {
-                        createElectronicObject(individualLineValues);
-                        System.out.println("electronic");
-                    }
-                    case "Clothing" -> {
-                        createClothingObject(individualLineValues);
-                        System.out.println("clothing");
-                    }
-                    case "Furniture" -> {
-                        createFurnitureObject(individualLineValues);
-                        System.out.println("furniture");
-                    }
-                    default -> System.out.println("Unknown product type!");
+        Scanner reader = new Scanner(new File(filePath));
+        while (reader.hasNextLine()){
+            String line = reader.nextLine();
+            String[] individualLineValues = line.split(", ");
+            switch (individualLineValues[0]) {
+                case "Electronics" -> {
+                    createElectronicObject(individualLineValues);
+                    System.out.println("electronic");
                 }
+                case "Clothing" -> {
+                    createClothingObject(individualLineValues);
+                    System.out.println("clothing");
+                }
+                case "Furniture" -> {
+                    createFurnitureObject(individualLineValues);
+                    System.out.println("furniture");
+                }
+                //Don't throw an exception here as it will automatically ignore the product and continue reading the contents this way.
+                default -> System.out.println("Unknown product type!");
             }
-            reader.close();
-        } catch (IOException e) {
-            throw new IOException();
         }
+        reader.close();
     }
 
 
@@ -65,13 +63,9 @@ public class fileReader implements Files{
     } 
 
     @Override
-    public void checkForFileAndCreateIfNotPresent() {
-        try {
-            if (productFile.createNewFile()){
-                System.out.println("Product file created: " + productFile.getName());
-            }
-        } catch (IOException e) {
-            System.out.println("File error " + e);
+    public void checkForFileAndCreateIfNotPresent() throws IOException {
+        if (productFile.createNewFile()){
+            System.out.println("Product file created: " + productFile.getName());
         }
     }
 

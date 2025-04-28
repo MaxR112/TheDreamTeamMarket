@@ -8,11 +8,14 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.java.DreamTeam.Exceptions.CouldNotUpdateQuantityException;
+import main.java.DreamTeam.Exceptions.ProductNotFoundException;
 import main.java.DreamTeam.Screen.Assets.ChangeItem;
 import main.java.DreamTeam.Screen.Assets.ResetConstraints;
 import main.java.DreamTeam.Screen.Assets.Window;
@@ -84,10 +87,22 @@ public class Checkout extends JPanel {
                 boolean isThrown = false;
                 try{
                     Window.getCart().checkout();
+                    ChangeItem.writeCatalogFile();
                 }
-                catch(Exception ex){
+                catch(CouldNotUpdateQuantityException ex){
                     isThrown = true;
-                    showMessageDialog(null, ex.getMessage());
+                    System.out.println(ex);
+                    showMessageDialog(null, "Error when reducing the product quantity in the catalog!");
+                }
+                catch(ProductNotFoundException ex){
+                    isThrown = true;
+                    System.out.println(ex);
+                    showMessageDialog(null, "The products for the cart does not exist!");
+                }
+                catch(IOException ex){
+                    isThrown = true;
+                    System.out.println(ex);
+                    showMessageDialog(null, "Cannot complete the checkout because of file error!");
                 }
                 //Prevent switching when exception is thrown so it stays in the same spot.
                 if(!isThrown){
@@ -97,9 +112,6 @@ public class Checkout extends JPanel {
                     else{
                         showMessageDialog(null, "Successfully purchased " + cartCount + " items for a total of $" + String.format ("%.2f", totalPrice) + ".");
                     }
-                    //TODO: don't do this (move writeCatalogFile somewhere else)
-                    ChangeItem item = new ChangeItem("Electronics");
-                    item.writeCatalogFile();
                     window.setContentPane(new BuyerScreen(window, Window.getCatalog(), Window.getCart()));
                     window.validate();
                 }
