@@ -152,7 +152,7 @@
    - Another thing about our performance is that Java Swing is not thread safe which could cause issues.
 
 ### UML Diagram
-![UML Diagram](UML.png)
+![UML Diagram](UML.pdf)
 
 ### Sequence Diagram: Seller Adding Product
 ![Sequence Diagram](Sequence.png)
