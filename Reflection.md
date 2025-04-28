@@ -7,7 +7,7 @@
     - Helped lay out ideas for back end code.
     - Bug fixed, merged changes, and maintained GitHub repository.
     - Created README and Reflection.
-    - Created UML Diagram.
+    - Created UML diagram.
 - **Bao**
     - Created GUI
     - Implemented previously defined methods into the GUI enviornment.
